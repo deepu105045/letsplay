@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <mat-icon routerLink='/home'>home</mat-icon>
+  <span>{{title}}</span>
+  <span class="spacer"></span>
+
+  <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="isActiveUser">
+    <mat-icon>settings</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu" >
+    <button mat-menu-item>
+      <mat-icon>settings</mat-icon>
+      <span>User Settings</span>
+    </button>
+    <button mat-menu-item routerLink='/league'>
+      <mat-icon>settings</mat-icon>
+      <span>Tournament Settings</span>
+  </button>
+  </mat-menu>
+      <p>{{(authService.user$ |async)?.displayName}} </p>
+    <mat-icon *ngIf="(authService.user$ |async)?.uid"  class="icon" (click)="logout()">exit_to_app</mat-icon>
+    <mat-icon *ngIf="!(authService.user$ |async)?.uid" routerLink='/user/login'>account_circle </mat-icon>
+</mat-toolbar>

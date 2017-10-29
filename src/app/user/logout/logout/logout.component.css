@@ -1,0 +1,33 @@
+
+
+.font-size{
+    font-size: 96px;
+}
+
+.icon-color-green{
+    color: green;
+}
+
+.icon-color-red{
+    color: red;
+}
+
+.leftContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-content: center;
+}
+
+.item{
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+}
+
+.room{
+    margin: 10px;
+    height: 200px;
+    width: 200px;
+    background-color: black;
+}

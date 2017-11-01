@@ -11,8 +11,10 @@ export class TournamentService {
   tournaments$: Observable<any>;
 
   constructor(private afDb: AngularFireDatabase) {
-    this.tournaments$= this.afDb.object(`prediction-app/tournaments/-KqQkS3gPDg1lkaxf4u9`).valueChanges();
+    this.tournaments$= this.afDb.list(`prediction-app/tournaments`).valueChanges();
    }
+
+
 
    
 

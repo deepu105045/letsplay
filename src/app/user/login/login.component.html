@@ -1,7 +1,7 @@
-<!-- Create grid with one big row and column -->
-<mat-grid-list cols="1" rowHeight="2:1">
+<!-- Create grid with one big row and column  -->
+<mat-grid-list cols="1" rowHeight="3:1">
     <mat-grid-tile rowspan=1>
-        <mat-card class="container">
+        <mat-card class="container ">
             <div class="box" (click)="onSubmit('GOOGLE')">
                 <svg class="svg-style-48" viewBox="0 0 24 24" id="google">
                     <path fill="#ea4335" d="M20,18H18V9.25L12,13L6,9.25V18H4V6H5.2L12,10.25L18.8,6H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"
@@ -64,7 +64,8 @@
                         <mat-progress-bar color="accent" value=50 bufferValue=75 [mode]=mode></mat-progress-bar>
                     </div>
                 </mat-card-actions>
+                <a routerLink='/user/register'>Create account</a>
             </form>
         </mat-card>
     </mat-grid-tile>
-</mat-grid-list>
+</mat-grid-list> 

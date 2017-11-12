@@ -1,1 +1,19 @@
-Settings
+<mat-sidenav-container class="container">
+  <mat-sidenav mode="side" opened="true" class="sidenav">
+    <mat-toolbar-row layout="row">
+      <mat-list>
+        <mat-list-item routerLink='/settings/add-team'>
+          <mat-icon>face</mat-icon>Team</mat-list-item>
+        <mat-list-item routerLink='/settings/tournaments'>
+          <mat-icon>settings</mat-icon>Tournaments</mat-list-item>
+        <mat-list-item routerLink='/home'>
+          <mat-icon>face</mat-icon>User Settings</mat-list-item>
+      </mat-list>
+    </mat-toolbar-row>
+  </mat-sidenav>
+
+  <div>
+    <router-outlet>
+    </router-outlet>
+  </div>
+</mat-sidenav-container>

@@ -17,47 +17,47 @@ import { TournamentService } from '../../../shared/services/tournament/tournamen
 })
 
 export class LeagueComponent {
-  tournaments$: Observable<any>;
-  displayedColumns = ['userId', 'userName', 'progress', 'color'];
-  // exampleDatabase = new ExampleDatabase();
-  // dataSource: ExampleDataSource | null;
-  dataSource;
+  // tournaments$: Observable<any>;
+  // displayedColumns = ['userId', 'userName', 'progress', 'color'];
+  // // exampleDatabase = new ExampleDatabase();
+  // // dataSource: ExampleDataSource | null;
+  // dataSource;
 
-  @ViewChild('filter') filter: ElementRef;
+  // @ViewChild('filter') filter: ElementRef;
 
-   constructor(private tournamentService: TournamentService) {
-    this.tournaments$ = this.tournamentService.tournaments$;
-   }
+  //  constructor(private tournamentService: TournamentService) {
+  //   this.tournaments$ = this.tournamentService.tournaments$;
+  //  }
 
   ngOnInit() {
     // this.dataSource = new ExampleDataSource(this.exampleDatabase);
-    this.dataSource= this.tournaments$;
+    // this.dataSource= this.tournaments$;
 
 
     
-    Observable.fromEvent(this.filter.nativeElement, 'keyup')
-        .debounceTime(150)
-        .distinctUntilChanged()
-        .subscribe(() => {
-          if (!this.dataSource) { return; }
-          this.dataSource.filter = this.filter.nativeElement.value;
-        });
+    // Observable.fromEvent(this.filter.nativeElement, 'keyup')
+    //     .debounceTime(150)
+    //     .distinctUntilChanged()
+    //     .subscribe(() => {
+    //       if (!this.dataSource) { return; }
+    //       this.dataSource.filter = this.filter.nativeElement.value;
+    //     });
   }
 }
 
 /** Constants used to fill up our data base. */
-const COLORS = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
-  'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
-const NAMES = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
-  'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
-  'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
+// const COLORS = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
+//   'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
+// const NAMES = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
+//   'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
+//   'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
 
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
-}
+// export interface UserData {
+//   id: string;
+//   name: string;
+//   progress: string;
+//   color: string;
+// }
 
 /** An example database that the data source uses to retrieve data for the table. */
 // export class ExampleDatabase {

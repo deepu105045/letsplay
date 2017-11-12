@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../shared/services/auth/auth.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ export class HeaderComponent implements OnInit {
   title: string;
   activeusername: string;
   isActiveUser;
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService,private router:Router) { }
 
   ngOnInit() {
     this.title ="Prediction League";
@@ -24,7 +25,9 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
-    this.authService.logout();
+    this.authService.logout().then(user => {
+      this.router.navigate(['/user/logout']);
+    })
   }
 
   

@@ -1,6 +1,5 @@
 import * as firebase from 'firebase/app';
 import { Injectable } from '@angular/core';
-import { Router } from "@angular/router";
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import { Userapi } from '../../../user/userapi';
@@ -11,7 +10,7 @@ import { Authproviders } from '../../model/authproviders.enum';
 export class AuthService implements Userapi {
   user$: Observable<firebase.User>;
 
-  constructor(private router: Router, private afAuth: AngularFireAuth) {
+  constructor(private afAuth: AngularFireAuth) {
     this.user$ = this.afAuth.authState;
   }
 
@@ -26,11 +25,8 @@ export class AuthService implements Userapi {
     }
   }
 
-  logout(): void {
-    this.afAuth.auth.signOut().then(user => {
-      console.log('AUTH: user logged off ', user);
-      this.router.navigate(['/user/logout']);
-    })
+  logout(): Promise<any> {
+    return this.afAuth.auth.signOut();
   }
 
   getDisplayName(): string{

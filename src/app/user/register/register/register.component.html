@@ -1,0 +1,15 @@
+<!-- Create grid with one big row and column -->
+<mat-grid-list cols="1" rowHeight="3:1">
+    <mat-grid-tile rowspan=1>
+        <mat-grid-list cols=9 rowHeight=5em>
+            <mat-grid-tile colspan=1>
+                <mat-icon>email</mat-icon>
+            </mat-grid-tile>
+            <mat-grid-tile colspan=8>
+                <mat-form-field class="login-full-width">
+                    <input matInput placeholder="Username">
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-grid-tile>
+</mat-grid-list>

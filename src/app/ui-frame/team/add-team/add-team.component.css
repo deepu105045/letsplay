@@ -1,0 +1,20 @@
+ .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
+
+.add-item{
+  margin: 10px;
+  width:200px;
+}
+
+.display-item{
+  margin: 10px;
+  width:500px;
+}
+
+ /* mat-card{
+    margin: 10px;
+    width: 200px;
+}  */

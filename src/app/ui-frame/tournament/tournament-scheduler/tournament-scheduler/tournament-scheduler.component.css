@@ -1,0 +1,8 @@
+.time-width{
+    width: 100px;
+}
+
+.text-inside-grid {
+  position: absolute;
+  left: 5px;
+}

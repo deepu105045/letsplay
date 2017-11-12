@@ -1,0 +1,29 @@
+<div class="container">
+  <mat-card class="add-item">
+    <mat-card-content>
+      <form class="login-form" [formGroup]="createTeamForm" novalidate>
+        <mat-form-field class="create-tournament-width">
+          <mat-select placeholder="Select sport" formControlName="sportId">
+            <mat-option #p *ngFor="let sport of sports$|async" [value]="sport.sportId">{{sport.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Team name" formControlName="teamName">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Display name" formControlName="displayName">
+        </mat-form-field>
+      </form>
+
+    </mat-card-content>
+    <button mat-raised-button color="primary" (click)="createTeam()">Create team</button>
+  </mat-card>
+
+   <div class="display-item">
+      <mat-card  *ngFor="let team of teams">
+        <mat-card-header>{{team}}</mat-card-header>
+      </mat-card>
+  </div> 
+</div>
+
+

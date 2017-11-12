@@ -9,10 +9,10 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  tournaments$: Observable<any>;
+  // tournaments$: Observable<any>;
 
   constructor(private tournamentService: TournamentService) {
-    this.tournaments$ = this.tournamentService.tournaments$;
+    // this.tournaments$ = this.tournamentService.tournaments$;
    }
 
   ngOnInit() {

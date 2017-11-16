@@ -6,7 +6,6 @@ import { AppMaterialModule } from '../app-material/app-material.module';
 import { HeaderComponent } from './header/header.component';
 import { UiFrameRoutingModule } from './ui-frame-routing.module';
 import { TournamentService } from '../shared/services/tournament/tournament.service';
-import { LeagueComponent } from './league/league/league.component';
 import { TournamentComponent } from './tournament/tournament/tournament.component';
 import { AddTournamentComponent } from './tournament/add-tournament/add-tournament.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -16,6 +15,11 @@ import { SportService } from '../shared/services/sport/sport.service';
 import { TeamService } from '../shared/services/team/team.service';
 import { TournamentSchedulerComponent } from './tournament/tournament-scheduler/tournament-scheduler/tournament-scheduler.component';
 import { TimeService } from '../shared/services/time/time.service';
+import { CreateLeagueComponent } from './league/create-league/create-league.component';
+import { LeagueService } from '../shared/services/league/league.service';
+import { ViewLeagueComponent } from './league/view-league/view-league/view-league.component';
+import { PredictionComponent } from './prediction/prediction/prediction.component';
+import { PredictionService } from '../shared/services/prediction/prediction.service';
 
 @NgModule({
   imports: [
@@ -30,18 +34,22 @@ import { TimeService } from '../shared/services/time/time.service';
   declarations: [
     HomeComponent,
     HeaderComponent,
-    LeagueComponent,
     TournamentComponent,
     AddTournamentComponent,
     SettingsComponent,
     AddTeamComponent,
     TournamentSchedulerComponent,
+    CreateLeagueComponent,
+    ViewLeagueComponent,
+    PredictionComponent,
   ],
   providers:[
     TournamentService,
     SportService,
     TeamService,
-    TimeService
+    TimeService,
+    LeagueService,
+    PredictionService
   ]
 })
 export class UiFrameModule { }

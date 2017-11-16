@@ -38,7 +38,10 @@ export class AddTournamentComponent implements OnInit {
     sportControl.valueChanges.subscribe((sportId) => { // listen to sport selection checkbox event
       this.teamService.getTeamsBySportId(sportId)
         .subscribe((teamNames) => {
-          this.teams = teamNames;
+          this.teams = [];
+          teamNames.forEach(item => {
+            this.teams.push(item.payload.val());
+          })
           this.teamselected = {};
         });
     })
@@ -50,16 +53,14 @@ export class AddTournamentComponent implements OnInit {
     newTournament.sportId = this.createTournamentForm.controls.sport.value;
     newTournament.teams = this.selectedTeamsKey;
 
-    console.log(this.createTournamentForm.controls.sport)
-
     this.tournamentService.saveTournament(newTournament)
       .then((_ => { this.router.navigate(['/settings/tournaments']) }))
       .catch((error) => { console.log('Error saving tournament', error) })
   }
 
   addToSelectedTeamList(team) {
-    team in this.teamselected ?  delete this.teamselected[team] : this.teamselected[team] = team;
-    this.selectedTeamsKey=Object.keys(this.teamselected);
+    team in this.teamselected ? delete this.teamselected[team] : this.teamselected[team] = team;
+    this.selectedTeamsKey = Object.keys(this.teamselected);
   }
 
 }

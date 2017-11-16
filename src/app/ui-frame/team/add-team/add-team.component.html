@@ -15,15 +15,20 @@
         </mat-form-field>
       </form>
 
+      <div>
+        <input type="file" placeholder="Upload team logo" (change)="uploadFile($event)">
+      </div>
+
     </mat-card-content>
     <button mat-raised-button color="primary" (click)="createTeam()">Create team</button>
   </mat-card>
 
-   <div class="display-item">
-      <mat-card  *ngFor="let team of teams">
-        <mat-card-header>{{team}}</mat-card-header>
-      </mat-card>
-  </div> 
+  <div class="display-item">
+    <mat-card *ngFor="let team of teams">
+      <mat-card-header>
+        <mat-card-title>{{team}}</mat-card-title>
+         <!-- <img mat-card-avatar [src]=team.url>  -->
+      </mat-card-header>
+    </mat-card>
+  </div>
 </div>
-
-

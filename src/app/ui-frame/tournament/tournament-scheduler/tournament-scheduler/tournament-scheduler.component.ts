@@ -5,9 +5,9 @@ import { Tournament } from '../../tournament';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn, FormArray, FormControl } from '@angular/forms';
 import { TimeService } from '../../../../shared/services/time/time.service';
 import { Observable } from 'rxjs/Observable';
-import { DialogsService } from '../../../../shared/services/Dialog/dialogs.service';
 import { ConfirmDialogComponent } from '../../../../shared/Dialog/confirmDialog/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
+import { Schedule } from '../../schedule';
 
 @Component({
   selector: 'app-tournament-scheduler',
@@ -55,8 +55,13 @@ export class TournamentSchedulerComponent implements OnInit {
   createTournamentSchedule() {
     this.TournamentSchedulerForm.value.gameLines.forEach((gameLine) => {
       if (gameLine.team1 !== '') {
-        gameLine.gameDate = gameLine.gameDate.toDateString();
-        this.tournamentService.saveTournamentSchedular(this.tournamentId, gameLine)
+        let sch= new Schedule();
+        sch.gameDate=gameLine.gameDate.toDateString();
+        sch.team1=gameLine.team1;
+        sch.team2 = gameLine.team2;
+        sch.venue =gameLine.venue;
+
+        this.tournamentService.saveTournamentSchedular(this.tournamentId,sch)
           .then(_ => {
             this.TournamentSchedulerForm.reset();
           })
@@ -88,12 +93,7 @@ export class TournamentSchedulerComponent implements OnInit {
   getTournamentSchedule(tournamentId) {
     this.tournamentService.getTournamentSchedule(tournamentId)
       .subscribe((schedules) => {
-        this.schedules = [];
-        schedules.forEach(item => {
-          const key = item.payload.key;
-          const data = { key, ...item.payload.val() };
-          this.schedules.push(data);
-        })
+        this.schedules=schedules;
       })
   }
 
@@ -103,9 +103,8 @@ export class TournamentSchedulerComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`,result);
       if (result == true) {
-        this.tournamentService.removeSchedule(this.tournamentId, schedule.key)
+        this.tournamentService.removeSchedule(this.tournamentId, schedule.scheduleId)
           .then(_ => console.log('Deleted successfully ', schedule))
           .catch(error => console.log('Error deleting schedule'));
       }

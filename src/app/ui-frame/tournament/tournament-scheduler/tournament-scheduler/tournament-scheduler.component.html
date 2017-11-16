@@ -1,8 +1,10 @@
-<div *ngIf="schedules.length > 0">
-  <mat-card>
-    <mat-card-title align="center">
+<mat-card *ngIf="tournament">
+      <mat-card-title align="center">
       <u>{{tournament.name}}</u>
     </mat-card-title>
+</mat-card>
+<div *ngIf="schedules.length > 0">
+  <mat-card>
     <div *ngFor="let schedule of schedules">
       <mat-grid-list cols="5" rowHeight="50px">
         <mat-grid-tile> {{schedule.gameDate}} : {{schedule.time}} IST</mat-grid-tile>

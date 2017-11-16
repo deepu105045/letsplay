@@ -1,0 +1,13 @@
+<mat-card>
+  <form novalidate [formGroup]="createLeagueForm">
+    <mat-form-field>
+      <input matInput placeholder="league name here" value="" formControlName="leageueName">
+    </mat-form-field>
+    <br>
+    <mat-radio-group formControlName="tournamentName">
+      <mat-radio-button *ngFor="let tournament of tournaments$|async" [value]="tournament">{{tournament.name}}
+      </mat-radio-button>
+    </mat-radio-group>
+  </form>
+  <button mat-raised-button color="primary" (click)="onSubmit()">Create league</button>
+</mat-card>

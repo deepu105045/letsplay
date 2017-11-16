@@ -11,6 +11,7 @@ import { SportService } from '../../../shared/services/sport/sport.service';
   styleUrls: ['./add-team.component.css']
 })
 export class AddTeamComponent implements OnInit {
+  selectedFiles: any;
   teams: {}[];
   createTeamForm: FormGroup;
   sports$;
@@ -30,7 +31,10 @@ export class AddTeamComponent implements OnInit {
     sportControl.valueChanges.subscribe((sportId) => { 
       this.teamService.getTeamsBySportId(sportId) 
         .subscribe((teamNames) => {
-          this.teams = teamNames;
+          this.teams=[];
+          teamNames.forEach(item =>{
+            this.teams.push(item.payload.val());
+          })
         });
     })
   }
@@ -40,12 +44,15 @@ export class AddTeamComponent implements OnInit {
     let newTeam = new Team();
     newTeam.name = this.createTeamForm.controls.teamName.value;
     newTeam.displayName = this.createTeamForm.controls.displayName.value;
+    newTeam.url = this.selectedFiles;
 
     this.teamService.saveTeam(sportId, newTeam)
       .then(_ => console.log('Team data sucessfully saved in firebase'))
-
-
-
   }
+
+  uploadFile(event: any) {
+    this.selectedFiles = event.srcElement.files[0];
+  }
+
 
 }

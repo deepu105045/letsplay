@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UiFrameModule } from './ui-frame/ui-frame.module';
 
+import 'firebase/storage';
 import { AngularFireModule } from 'angularfire2'; 
 import { AngularFireDatabase, AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';

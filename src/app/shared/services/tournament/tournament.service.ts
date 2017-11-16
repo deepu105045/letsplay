@@ -6,6 +6,7 @@ import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { environment } from "../../../../environments/environment";
 import { Constants } from '../../../constants/constants';
 import { Tournament } from '../../../ui-frame/tournament/tournament';
+import { Schedule } from '../../../ui-frame/tournament/schedule';
 
 @Injectable()
 export class TournamentService {
@@ -33,12 +34,14 @@ export class TournamentService {
     return postRef.update(tournament);
   }
 
-  saveTournamentSchedular(tournamentId,schedule){
-    return this.afDb.list(this.baseurl+'/tournament_schedule/'+tournamentId).push(schedule);
+  saveTournamentSchedular(tournamentId,schedule:Schedule){
+    let postRef= this.schedule$.push();
+    schedule.scheduleId=postRef.key;
+    return this.afDb.list(this.baseurl+'/tournament_schedule/'+tournamentId).update(schedule.scheduleId,schedule);
   }
 
   getTournamentSchedule(tournamentId):Observable<any>{
-    return this.afDb.list(this.baseurl+'/tournament_schedule/'+tournamentId).snapshotChanges();
+    return this.afDb.list(this.baseurl+'/tournament_schedule/'+tournamentId).valueChanges();
   }
 
   removeSchedule(tournamentId, scheduleId):Promise<void>{

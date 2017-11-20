@@ -9,6 +9,7 @@ import { AddTeamComponent } from './team/add-team/add-team.component';
 import { TournamentSchedulerComponent } from './tournament/tournament-scheduler/tournament-scheduler/tournament-scheduler.component';
 import { CreateLeagueComponent } from './league/create-league/create-league.component';
 import { PredictionComponent } from './prediction/prediction/prediction.component';
+import { UpdateResultsComponent } from './tournament/updateResults/update-results/update-results.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: 'add-team', component: AddTeamComponent },
       { path: 'tournament-scheduler/:id', component: TournamentSchedulerComponent },
       { path: 'create-league', component: CreateLeagueComponent },
+      { path: 'update-results/:id', component: UpdateResultsComponent}
     ]
   },
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },

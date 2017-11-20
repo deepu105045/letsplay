@@ -26,5 +26,9 @@ export class TournamentComponent implements OnInit {
     this.router.navigate(['/settings/tournament-scheduler', tournament.tournamentId]);
   }
 
+  gotoUpdateResults(tournament:Tournament){
+    this.router.navigate(['/settings/update-results', tournament.tournamentId]);
+  }
+
 
 }

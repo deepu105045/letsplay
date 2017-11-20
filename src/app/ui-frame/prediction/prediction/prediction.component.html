@@ -1,40 +1,41 @@
-<mat-card>
   <div *ngIf="dataSource" class="example-container mat-elevation-z8">
+    <mat-card class="card" ><mat-card-title>{{tournamentName}}</mat-card-title></mat-card>
     <mat-table [dataSource]="dataSource">
 
-      <!-- Date Column -->
+      <!-- Venue and Date Column -->
       <ng-container matColumnDef="gameDate">
-        <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.gameDate}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef > Date </mat-header-cell>
+        <mat-cell  *matCellDef="let element"> {{element.venue}} <br> {{element.gameDate}}</mat-cell>
       </ng-container>
 
-      <!-- Venue Column -->
-      <ng-container matColumnDef="Venue">
-        <mat-header-cell *matHeaderCellDef> Venue </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.venue}} </mat-cell>
-      </ng-container>
 
       <!-- Team1 Column -->
       <ng-container matColumnDef="Team1">
         <mat-header-cell *matHeaderCellDef> Team1 </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.team1}} </mat-cell>
+        <mat-cell (click)="savePrediction(element.scheduleId,element.team1)" *matCellDef="let element"> {{element.team1}} </mat-cell>
       </ng-container>
 
       <!-- Team2 Column -->
       <ng-container matColumnDef="Team2">
         <mat-header-cell *matHeaderCellDef> Team2 </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.team2}} </mat-cell>
+        <mat-cell (click)="savePrediction(element.scheduleId,element.team2)" *matCellDef="let element"> {{element.team2}} </mat-cell>
       </ng-container>
 
       <!-- Prediction Column -->
       <ng-container matColumnDef="Prediction">
-        <mat-header-cell *matHeaderCellDef> Team2 </mat-header-cell>
-        <mat-cell click="savePrediction(element)" *matCellDef="let element"> {{element.team2}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Your Prediction </mat-header-cell>
+        <mat-cell  *matCellDef="let element"> {{myPrediction[element.scheduleId]}} </mat-cell>
       </ng-container>
+
+       <!-- Results Column -->
+      <ng-container matColumnDef="Results">
+        <mat-header-cell *matHeaderCellDef> Match Result </mat-header-cell>
+        <mat-cell  *matCellDef="let element"> {{results[element.scheduleId]}} </mat-cell>
+      </ng-container>
+
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
   </div>
 
-</mat-card>

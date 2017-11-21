@@ -1,0 +1,30 @@
+[debug] [2017-11-03T23:38:52.874Z] ----------------------------------------------------------------------
+[debug] [2017-11-03T23:38:52.876Z] Command:       /usr/local/Cellar/node/7.2.0/bin/node /usr/local/bin/firebase login
+[debug] [2017-11-03T23:38:52.877Z] CLI Version:   3.13.1
+[debug] [2017-11-03T23:38:52.877Z] Platform:      darwin
+[debug] [2017-11-03T23:38:52.877Z] Node Version:  v7.2.0
+[debug] [2017-11-03T23:38:52.878Z] Time:          Fri Nov 03 2017 18:38:52 GMT-0500 (CDT)
+[debug] [2017-11-03T23:38:52.878Z] ----------------------------------------------------------------------
+[debug] 
+[info] 
+[info] Visit this URL on any device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=758934040&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2017-11-03T23:39:08.115Z] >>> HTTP REQUEST POST https://accounts.google.com/o/oauth2/token { code: '4/F7FsbMJB-p_ak5UW-ju9yzImPxnS9B3mWrN2sJG_ue0',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  redirect_uri: 'http://localhost:9005',
+  grant_type: 'authorization_code' } 
+ Fri Nov 03 2017 18:39:08 GMT-0500 (CDT)
+[debug] [2017-11-03T23:39:08.124Z] Token Fetch Error: Error
+    at FirebaseError (/usr/local/lib/node_modules/firebase-tools/lib/error.js:11:17)
+    at Request._callback (/usr/local/lib/node_modules/firebase-tools/lib/api.js:32:23)
+    at self.callback (/usr/local/lib/node_modules/firebase-tools/node_modules/request/request.js:186:22)
+    at emitOne (events.js:96:13)
+    at Request.emit (events.js:188:7)
+    at Request.onRequestError (/usr/local/lib/node_modules/firebase-tools/node_modules/request/request.js:878:8)
+    at emitOne (events.js:96:13)
+    at ClientRequest.emit (events.js:188:7)
+    at ClientRequest.onError (/usr/local/lib/node_modules/firebase-tools/node_modules/tunnel-agent/index.js:179:21)
+    at ClientRequest.g (events.js:292:16)

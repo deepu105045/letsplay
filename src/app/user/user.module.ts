@@ -8,6 +8,7 @@ import { AppMaterialModule } from '../app-material/app-material.module';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from '../shared/services/auth/auth.service';
 import { LogoutComponent } from './logout/logout/logout.component';
+import { RegisterComponent } from './register/register/register.component';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { LogoutComponent } from './logout/logout/logout.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [LoginComponent, LogoutComponent],
+  declarations: [LoginComponent, LogoutComponent, RegisterComponent],
   providers:[AuthService]
 })
 export class UserModule { }

@@ -1,15 +1,1 @@
-<mat-accordion class="example-headers-align">
-  <mat-expansion-panel *ngFor="let tournament of tournaments$ | async" (opened)="setStep(0)" hideToggle="true">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        {{tournament.name}}
-      </mat-panel-title>
-      <mat-panel-description>
-        logo here
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    {{tournament.description}}
-  </mat-expansion-panel>
-</mat-accordion>
-
-<button mat-button class="md-fab md-fab-bottom-right" aria-label="Add a category"><md-icon>add</md-icon></button>
+<app-view-league><app-view-league>

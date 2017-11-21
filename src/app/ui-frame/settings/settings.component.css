@@ -1,0 +1,16 @@
+
+.container {
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+}
+
+ .sidenav {
+    padding: 1em;
+} 
+.sidenav-content {
+   display: flex;
+   height: 100%;
+   align-items: cesidenavnter;
+   justify-content: space-around; 
+}

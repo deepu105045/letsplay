@@ -90,7 +90,8 @@ export class LoginComponent implements OnInit {
 
   handleSucessfulLogin(user) {
     this.mode= null;
-    this.router.navigate(['/settings']);
+    console.log("User details" +user.displayName);
+    this.router.navigate(['/home']);
     //   this.loggedinUserName = user.additionalUserInfo.profile.name;
   }
 }

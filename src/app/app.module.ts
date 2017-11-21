@@ -7,12 +7,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UiFrameModule } from './ui-frame/ui-frame.module';
 
+import 'firebase/storage';
 import { AngularFireModule } from 'angularfire2'; 
 import { AngularFireDatabase, AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from './shared/services/auth/auth.service';
 import { Userapi } from './user/userapi';
 import { AuthGuard } from './shared/services/auth/auth.guard';
+import { ConfirmDialogComponent } from './shared/Dialog/confirmDialog/confirm-dialog/confirm-dialog.component';
+import { AppMaterialModule } from './app-material/app-material.module';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyCme8PujY4uXC78TTSOKEqMZbaDXV-HQsM',
@@ -26,6 +29,10 @@ const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
+    ConfirmDialogComponent,
+  ],
+  exports: [
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +43,9 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    AppMaterialModule
   ],
+  entryComponents:[ConfirmDialogComponent],
   providers: [ 
     AngularFireDatabase,
     AuthGuard,

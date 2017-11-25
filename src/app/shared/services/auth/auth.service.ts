@@ -35,4 +35,9 @@ export class AuthService implements Userapi {
     })
     return;
   }
+
+  getCurrentuser(){
+    return this.afAuth.auth.currentUser;
+  }
+  
 }

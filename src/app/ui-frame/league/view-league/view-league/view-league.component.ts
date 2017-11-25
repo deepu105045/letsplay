@@ -20,7 +20,7 @@ export class ViewLeagueComponent implements OnInit {
     this.league$ = this.leagueService.getLeague();
   }
   onClick(league: League) {
-    this.router.navigate(['/prediction',league.tournamentId])
+    this.router.navigate(['/prediction',league.leagueId])
   }
 
 }

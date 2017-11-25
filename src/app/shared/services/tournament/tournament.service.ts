@@ -17,35 +17,46 @@ export class TournamentService {
   constructor(private afDb: AngularFireDatabase) {
     this.baseurl = 'letsplay';
     this.tournaments$ = this.afDb.list(this.baseurl + `/tournaments`);
-    this.schedule$ = this.afDb.list(this.baseurl+'/tournament_schedule/');
+    this.schedule$ = this.afDb.list(this.baseurl + '/tournament_schedule/');
   }
 
-  getTournaments(): Observable<Tournament[]> {
+  getTournaments(): Observable<{}[]> {
     return this.afDb.list(this.baseurl + `/tournaments`).valueChanges();
   }
 
-  getTournamentById(tournamentId:string){
-    return this.afDb.object(this.baseurl+'/tournaments/'+ tournamentId).valueChanges();
+  getTournamentById(tournamentId: string): Observable<{}> {
+    return this.afDb.object(this.baseurl + '/tournaments/' + tournamentId).valueChanges();
   }
 
-  saveTournament(tournament:Tournament):Promise<any>{
-    let postRef= this.tournaments$.push();
-    tournament.tournamentId=postRef.key;
+  saveTournament(tournament: Tournament): Promise<any> {
+    let postRef = this.tournaments$.push();
+    tournament.tournamentId = postRef.key;
     return postRef.update(tournament);
   }
 
-  saveTournamentSchedular(tournamentId,schedule:Schedule){
-    let postRef= this.schedule$.push();
-    schedule.scheduleId=postRef.key;
-    return this.afDb.list(this.baseurl+'/tournament_schedule/'+tournamentId).update(schedule.scheduleId,schedule);
+  saveTournamentSchedular(tournamentId, schedule: Schedule) {
+    let postRef = this.schedule$.push();
+    schedule.scheduleId = postRef.key;
+    return this.afDb.list(this.baseurl + '/tournament_schedule/' + tournamentId).update(schedule.scheduleId, schedule);
   }
 
-  getTournamentSchedule(tournamentId):Observable<any>{
-    return this.afDb.list(this.baseurl+'/tournament_schedule/'+tournamentId).valueChanges();
+  getTournamentSchedule(tournamentId): Observable<any> {
+    return this.afDb.list(this.baseurl + '/tournament_schedule/' + tournamentId).valueChanges();
   }
 
-  removeSchedule(tournamentId, scheduleId):Promise<void>{
-    return this.afDb.list(this.baseurl+'/tournament_schedule/'+tournamentId+'/'+ scheduleId).remove();
+  removeSchedule(tournamentId, scheduleId): Promise<void> {
+    return this.afDb.list(this.baseurl + '/tournament_schedule/' + tournamentId + '/' + scheduleId).remove();
+  }
+
+  getAllScheduleIds(tournamentId): Observable<any> {
+    let scheduleIds = [];
+    this.getTournamentSchedule(tournamentId)
+      .subscribe(games => {
+        games.forEach(game => {
+          scheduleIds.push(game.scheduleId);
+        })
+      })
+    return Observable.of(scheduleIds);
   }
 }
 

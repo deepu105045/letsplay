@@ -12,15 +12,18 @@ export class LeagueService {
     this.league$ = this.afDb.list(this.baseurl + `/league`);
   }
 
-  createLeague(league:League){
-    let postRef= this.league$.push();
-    league.leagueId=postRef.key;
+  createLeague(league: League) {
+    let postRef = this.league$.push();
+    league.leagueId = postRef.key;
     return postRef.update(league);
   }
 
-  getLeague():Observable<any>{
+  getLeague(): Observable<any> {
     return this.afDb.list(this.baseurl + `/league`).valueChanges();
   }
 
+  getLeagueById(leagueId): Observable<any> {
+    return this.afDb.object(this.baseurl + `/league/`+leagueId).valueChanges();
+  }
 
 }

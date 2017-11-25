@@ -20,6 +20,9 @@ import { LeagueService } from '../shared/services/league/league.service';
 import { ViewLeagueComponent } from './league/view-league/view-league/view-league.component';
 import { PredictionComponent } from './prediction/prediction/prediction.component';
 import { PredictionService } from '../shared/services/prediction/prediction.service';
+import { UpdateResultsComponent } from './tournament/updateResults/update-results/update-results.component';
+import { ResultsService } from '../shared/services/results/results.service';
+import { PointTableService } from '../shared/services/point-table/point-table.service';
 
 @NgModule({
   imports: [
@@ -42,6 +45,7 @@ import { PredictionService } from '../shared/services/prediction/prediction.serv
     CreateLeagueComponent,
     ViewLeagueComponent,
     PredictionComponent,
+    UpdateResultsComponent,
   ],
   providers:[
     TournamentService,
@@ -49,7 +53,9 @@ import { PredictionService } from '../shared/services/prediction/prediction.serv
     TeamService,
     TimeService,
     LeagueService,
-    PredictionService
+    PredictionService,
+    ResultsService,
+    PointTableService
   ]
 })
 export class UiFrameModule { }

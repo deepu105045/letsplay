@@ -12,7 +12,8 @@ import { LeagueService } from '../../../shared/services/league/league.service';
   styleUrls: ['./create-league.component.css']
 })
 export class CreateLeagueComponent implements OnInit {
-  tournaments$: Observable<Tournament[]>;
+  tournaments$: Observable<{}[]>;
+  // tournaments$: Observable<Tournament[]>;
   createLeagueForm: FormGroup;
   constructor(private tournamentService: TournamentService, private leagueService:LeagueService, private _fb:FormBuilder) { }
 

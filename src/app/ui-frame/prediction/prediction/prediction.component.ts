@@ -55,7 +55,7 @@ export class PredictionComponent implements OnInit {
             .subscribe(predictions => {
               predictions.map(prediction => {
                 if ((prediction['scheduleId'] === game.scheduleId) && (prediction['leagueId'] === this.leagueId)) {
-                  this.myPrediction[game.scheduleId] = prediction.team;
+                  this.myPrediction[game.scheduleId] = prediction.myPrediction;
                 }
               })
             })

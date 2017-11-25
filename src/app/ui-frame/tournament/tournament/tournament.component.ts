@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./tournament.component.css']
 })
 export class TournamentComponent implements OnInit {
-  tournaments$: Observable<Tournament[]>;
+  tournaments$: Observable<{}[]>;
+  // tournaments$: Observable<Tournament[]>;
   tour: Tournament;
   constructor(private tournamentService: TournamentService, private router: Router) { }
 

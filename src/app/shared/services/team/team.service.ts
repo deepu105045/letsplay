@@ -35,9 +35,9 @@ export class TeamService {
     })
   }
 
-  getTeams(): Observable<Team[]> {
-    return this.afDb.list(this.baseurl + `/teams`).valueChanges();
-  }
+  // getTeams(): Observable<Team[]> {
+  //   return this.afDb.list(this.baseurl + `/teams`).valueChanges();
+  // }
 
   getTeamsBySportId(sportId){
       return this.afDb.list(this.baseurl + '/sport_teams/' + sportId).snapshotChanges();

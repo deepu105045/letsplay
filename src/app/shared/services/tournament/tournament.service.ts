@@ -20,11 +20,11 @@ export class TournamentService {
     this.schedule$ = this.afDb.list(this.baseurl + '/tournament_schedule/');
   }
 
-  getTournaments(): Observable<Tournament[]> {
+  getTournaments(): Observable<{}[]> {
     return this.afDb.list(this.baseurl + `/tournaments`).valueChanges();
   }
 
-  getTournamentById(tournamentId: string): Observable<Tournament> {
+  getTournamentById(tournamentId: string): Observable<{}> {
     return this.afDb.object(this.baseurl + '/tournaments/' + tournamentId).valueChanges();
   }
 

@@ -22,6 +22,7 @@ import { PredictionComponent } from './prediction/prediction/prediction.componen
 import { PredictionService } from '../shared/services/prediction/prediction.service';
 import { UpdateResultsComponent } from './tournament/updateResults/update-results/update-results.component';
 import { ResultsService } from '../shared/services/results/results.service';
+import { PointTableService } from '../shared/services/point-table/point-table.service';
 
 @NgModule({
   imports: [
@@ -53,7 +54,8 @@ import { ResultsService } from '../shared/services/results/results.service';
     TimeService,
     LeagueService,
     PredictionService,
-    ResultsService
+    ResultsService,
+    PointTableService
   ]
 })
 export class UiFrameModule { }

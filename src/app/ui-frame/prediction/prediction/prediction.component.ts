@@ -23,7 +23,7 @@ export class PredictionComponent implements OnInit {
   dataSource: TournamentDataSource;
   tournamentId: any;
   myPrediction = {};
-  tournamentName;
+  tournamentName$;
   displayedColumns = ['gameDate', 'Team1', 'Team2', 'Prediction', 'Results'];
   constructor(private route: ActivatedRoute, private tournamentService: TournamentService,
     private predictionService: PredictionService, private resultsService: ResultsService,
@@ -42,7 +42,7 @@ export class PredictionComponent implements OnInit {
   }
 
   getTournamentName(tournamentId) {
-    this.tournamentService.getTournamentById(tournamentId).subscribe(tour => this.tournamentName = tour)
+    this.tournamentName$=this.tournamentService.getTournamentById(tournamentId);
   }
 
   getTournamentData(tournamentId) {
@@ -56,6 +56,7 @@ export class PredictionComponent implements OnInit {
               predictions.map(prediction => {
                 if ((prediction['scheduleId'] === game.scheduleId) && (prediction['leagueId'] === this.leagueId)) {
                   this.myPrediction[game.scheduleId] = prediction.myPrediction;
+                  console.log(prediction)
                 }
               })
             })
@@ -63,12 +64,13 @@ export class PredictionComponent implements OnInit {
         })
         this.dataSource = new TournamentDataSource(tournamentData);
       })
-
   }
 
   savePrediction(scheduleId, team) {
     this.predictionService.savePrediction(this.leagueId, this.tournamentId, scheduleId, team);
   }
+
+  
 }
 
 export class TournamentDataSource extends DataSource<any>{

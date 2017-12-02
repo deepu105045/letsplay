@@ -4,4 +4,5 @@ export class Schedule {
     team1: string;
     team2: string;
     scheduleId?:string;
+    tournamentId ?: string;
 }

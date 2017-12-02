@@ -31,5 +31,9 @@ export class TournamentComponent implements OnInit {
     this.router.navigate(['/settings/update-results', tournament.tournamentId]);
   }
 
+  updatePointTable(tournament:Tournament){
+   this.router.navigate(['/settings/point-table', tournament.tournamentId]);
+  }
+
 
 }

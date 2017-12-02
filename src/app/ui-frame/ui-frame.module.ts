@@ -23,6 +23,7 @@ import { PredictionService } from '../shared/services/prediction/prediction.serv
 import { UpdateResultsComponent } from './tournament/updateResults/update-results/update-results.component';
 import { ResultsService } from '../shared/services/results/results.service';
 import { PointTableService } from '../shared/services/point-table/point-table.service';
+import { PointTableComponent } from './point-table/point-table.component';
 
 @NgModule({
   imports: [
@@ -46,6 +47,7 @@ import { PointTableService } from '../shared/services/point-table/point-table.se
     ViewLeagueComponent,
     PredictionComponent,
     UpdateResultsComponent,
+    PointTableComponent,
   ],
   providers:[
     TournamentService,

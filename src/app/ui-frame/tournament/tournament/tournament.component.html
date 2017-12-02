@@ -1,4 +1,4 @@
-<mat-grid-list cols="3" rowHeight="2:1">
+<mat-grid-list cols="2" rowHeight="2:1">
   <mat-grid-tile *ngFor="let tournament of tournaments$|async">
     <mat-card>
       <mat-card-title>{{tournament.name}}</mat-card-title>
@@ -6,6 +6,8 @@
       <mat-card-actions>
         <button mat-raised-button color="primary" (click)="gotoTournamentScheduler(tournament)">SCHEDULE</button>
         <button mat-raised-button color="primary" (click)="gotoUpdateResults(tournament)">UPDATE RESULTS</button>
+        <button mat-raised-button color="primary" (click)="updatePointTable(tournament)">UPDATE POINT TABLE</button>
+
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>

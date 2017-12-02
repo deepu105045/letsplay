@@ -33,7 +33,7 @@ export class UpdateResultsComponent implements OnInit {
   }
 
   saveResults(scheduleId, team) {
-    this.resultsService.saveResults(scheduleId, team);
+    this.resultsService.saveResults(this.tournamentId,scheduleId, team);
   }
 
 }

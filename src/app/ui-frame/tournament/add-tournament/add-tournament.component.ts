@@ -54,7 +54,7 @@ export class AddTournamentComponent implements OnInit {
     newTournament.teams = this.selectedTeamsKey;
 
     this.tournamentService.saveTournament(newTournament)
-      .then((_ => { this.router.navigate(['/settings/tournaments']) }))
+      .then((_ => { this.router.navigate(['/tournaments']) }))
       .catch((error) => { console.log('Error saving tournament', error) })
   }
 

@@ -14,3 +14,8 @@
    align-items: cesidenavnter;
    justify-content: space-around; 
 }
+
+.del {
+  width: 10em;
+  height: 10em;
+}

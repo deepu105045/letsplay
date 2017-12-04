@@ -22,8 +22,10 @@ export class ResultsService {
     this.afDb.list(this.baseurl + `/results/`).set(scheduleId, winningTeam)
       .then(_ => {
         this.updatePoint(scheduleId, winningTeam);
-        this.pointTableService.updatePointTable(tournamentId)
       })
+      // .then(_ =>{
+      //   this.pointTableService.updatePointTable(tournamentId)
+      // })
   }
 
   getResults(scheduleId): Observable<any> {

@@ -25,8 +25,7 @@
       <!-- Prediction Column -->
       <ng-container matColumnDef="Prediction">
         <mat-header-cell *matHeaderCellDef> My Prediction </mat-header-cell>
-        <mat-cell [class.correct]="myPrediction[element.scheduleId] === results[element.scheduleId]"
-                  *matCellDef="let element"> {{myPrediction[element.scheduleId]}} </mat-cell>
+        <mat-cell [class.correct]="myPrediction[element.scheduleId] === results[element.scheduleId]" *matCellDef="let element"> {{myPrediction[element.scheduleId]}} </mat-cell>
       </ng-container>
 
       <!-- Results Column -->
@@ -40,8 +39,12 @@
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
     <div>
-    <mat-card  class="point-table" style="flex-grow: 3">
-      <mat-card-header>Point table </mat-card-header>
-    </mat-card></div>
+      <mat-card class="point-table" style="flex-grow: 3">
+        <mat-card-header>Point table </mat-card-header>
+        <mat-list>
+          <mat-list-item *ngFor="let user of pointTable" >  {{ user.name }} : {{ user.point }}</mat-list-item>
+        </mat-list>
+      </mat-card>
+    </div>
   </div>
 </div>

@@ -9,6 +9,7 @@ import { PredictionService } from '../../../shared/services/prediction/predictio
 import { ResultsService } from '../../../shared/services/results/results.service';
 import { LeagueService } from '../../../shared/services/league/league.service';
 import { AuthService } from '../../../shared/services/auth/auth.service';
+import { PointTableService } from '../../../shared/services/point-table/point-table.service';
 
 @Component({
   selector: 'app-prediction',
@@ -19,15 +20,20 @@ export class PredictionComponent implements OnInit {
   leagueName: any;
   leagueId: any;
   results = {};
+  myPrediction = {};
+  pointTable = [];
+
   tournamentData: any = [];
   dataSource: TournamentDataSource;
   tournamentId: any;
-  myPrediction = {};
+
+
   tournamentName$;
   displayedColumns = ['gameDate', 'Team1', 'Team2', 'Prediction', 'Results'];
   constructor(private route: ActivatedRoute, private tournamentService: TournamentService,
     private predictionService: PredictionService, private resultsService: ResultsService,
-    private leagueService: LeagueService, private authService: AuthService) {
+    private leagueService: LeagueService, private authService: AuthService,
+    private pointTableService: PointTableService) {
   }
 
   ngOnInit() {
@@ -38,16 +44,18 @@ export class PredictionComponent implements OnInit {
       this.leagueName = league.leagueName;
       this.getTournamentName(league.tournamentId);
       this.getTournamentData(league.tournamentId);
+
+      this.getPointTableData(this.leagueId, this.tournamentId)
     })
   }
 
   getTournamentName(tournamentId) {
-    this.tournamentName$=this.tournamentService.getTournamentById(tournamentId);
+    this.tournamentName$ = this.tournamentService.getTournamentById(tournamentId);
   }
 
   getTournamentData(tournamentId) {
     let uid = this.authService.getCurrentuser().uid;
-    this.tournamentService.getTournamentSchedule(tournamentId) 
+    this.tournamentService.getTournamentSchedule(tournamentId)
       .subscribe(tournamentData => {
         this.tournamentData = tournamentData;
         this.tournamentData.forEach(game => {
@@ -56,7 +64,6 @@ export class PredictionComponent implements OnInit {
               predictions.map(prediction => {
                 if ((prediction['scheduleId'] === game.scheduleId) && (prediction['leagueId'] === this.leagueId)) {
                   this.myPrediction[game.scheduleId] = prediction.myPrediction;
-                  console.log(prediction)
                 }
               })
             })
@@ -70,7 +77,25 @@ export class PredictionComponent implements OnInit {
     this.predictionService.savePrediction(this.leagueId, this.tournamentId, scheduleId, team);
   }
 
-  
+  getPointTableData(leagueId, tournamentId) {
+    this.pointTableService.getPointTable(tournamentId).subscribe(allPoints => {
+      allPoints.forEach((user) => {
+        let myname;
+        let uid = user.key;
+        let point = user.payload.val()[this.leagueId];
+
+        if (typeof point !== 'undefined') {
+          this.authService.getUserProfile(uid).subscribe(u => {
+            myname = u.name;
+            this.pointTable.push({ uid: uid, point: point, name: myname })
+          })
+        }
+      })
+    })
+    return Observable.of(this.pointTable);
+  }
+
+
 }
 
 export class TournamentDataSource extends DataSource<any>{

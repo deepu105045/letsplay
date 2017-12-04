@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { UiFrameModule } from '../../../ui-frame/ui-frame.module';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class PointTableService {
@@ -18,6 +19,10 @@ export class PointTableService {
     this.pointTable$ = this.afDb.list(this.baseurl + `/teams`);
   }
 
+  getPointTable(tournamentId):Observable<any>{
+    return this.afDb.list(this.pointTableUrl+'/'+tournamentId).snapshotChanges();
+  }
+
   updatePointTable(tournamentId) {
     let pushKey = this.pointTable$.push().key;
     let table = {};
@@ -28,39 +33,20 @@ export class PointTableService {
           const predictionsByUserAndLeagueId = this.groupBy(user, p => p.leagueId);
           let leaguePoint = {};
           predictionsByUserAndLeagueId.forEach((prd, leagueId) => {
-            // console.log(prd)
             let tot = 0;
             for (let p of prd) {
-              console.log(p) ==> Get point exluding undefined add it and return it 
-              tot = tot + p.point;
+              if ('point' in p) {
+                tot = tot + p.point;
+              } 
             }
             leaguePoint[leagueId] = tot;
           })
           table[uid] = leaguePoint;
           leaguePoint = {};
         })
-
-        console.log(table)
-        this.afDb.list(this.pointTableUrl).push(table)
+        this.afDb.list(this.pointTableUrl).update(tournamentId,table)
       })
   }
-
-
-  // updatePointTableByScheduleId(scheduleId) {
-  //   this.afDb.list(this.predictionUrl, ref => ref.orderByChild('scheduleId').equalTo(scheduleId)).valueChanges()
-  //     .subscribe((predictions) => {
-  //       predictions.map( prediction => {
-  //         let myUserId= prediction['uid'];
-  //         let myLeagueId = prediction['leagueId'];
-  //         let myPoint = prediction['point'];
-  //         this.afDb.list(this.pointTableUrl).push({
-  //           'uid' :prediction['uid'],
-  //           'leagueId': prediction['leagueId'],
-  //           'point' :  prediction['point']
-  //         })
-  //       })
-  //     });
-  // }
 
   groupBy(list, keyGetter) {
     const map = new Map();

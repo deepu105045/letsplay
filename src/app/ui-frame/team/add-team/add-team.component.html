@@ -1,34 +1,39 @@
 <div class="container">
-  <mat-card class="add-item">
-    <mat-card-content>
-      <form class="login-form" [formGroup]="createTeamForm" novalidate>
-        <mat-form-field class="create-tournament-width">
-          <mat-select placeholder="Select sport" formControlName="sportId">
-            <mat-option #p *ngFor="let sport of sports$|async" [value]="sport.sportId">{{sport.name}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Team name" formControlName="teamName">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Display name" formControlName="displayName">
-        </mat-form-field>
-      </form>
+  <div  class="add-item">
+  <mat-card>
+    <!-- <mat-card-content> -->
+    <form class="login-form" [formGroup]="createTeamForm" novalidate>
+      <mat-form-field class="create-tournament-width">
+        <mat-select placeholder="Select sport" formControlName="sportId">
+          <mat-option #p *ngFor="let sport of sports$|async" [value]="sport.sportId">{{sport.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Team name" formControlName="teamName">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Display name" formControlName="displayName">
+      </mat-form-field>
+    </form>
 
-      <div>
-        <input type="file" placeholder="Upload team logo" (change)="uploadFile($event)">
-      </div>
+    <div>
+      <input type="file" placeholder="Upload team logo" (change)="uploadFile($event)">
+    </div>
 
-    </mat-card-content>
+    <!-- </mat-card-content> -->
     <button mat-raised-button color="primary" (click)="createTeam()">Create team</button>
   </mat-card>
 
-  <div class="display-item">
-    <mat-card *ngFor="let team of teams">
-      <mat-card-header>
-        <mat-card-title>{{team}}</mat-card-title>
-         <!-- <img mat-card-avatar [src]=team.url>  -->
-      </mat-card-header>
-    </mat-card>
   </div>
+
+  
+    <div class="add-item">
+      <mat-chip-list class="mat-chip-list-stacked" aria-orientation="vertical">
+        <mat-chip color="accent"  selected="true" *ngFor="let team of teams">{{team}}</mat-chip>
+      </mat-chip-list>
+    </div>
 </div>
+
+ 

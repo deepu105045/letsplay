@@ -13,13 +13,20 @@
       <!-- Team1 Column -->
       <ng-container matColumnDef="Team1">
         <mat-header-cell *matHeaderCellDef> Team1 </mat-header-cell>
-        <mat-cell (click)="savePrediction(element.scheduleId,element.team1)" *matCellDef="let element"> {{element.team1}} </mat-cell>
+        <mat-cell  *matCellDef="let element">
+          <button (click)="savePrediction(element.scheduleId,element.team1)" mat-raised-button color="primary">{{element.team1}} </button>
+          <br>
+          <button (click)="savePrediction(element.scheduleId,element.team2)" mat-raised-button color="primary">{{element.team2}} </button>
+
+        </mat-cell>
       </ng-container>
 
       <!-- Team2 Column -->
       <ng-container matColumnDef="Team2">
         <mat-header-cell *matHeaderCellDef> Team2 </mat-header-cell>
-        <mat-cell (click)="savePrediction(element.scheduleId,element.team2)" *matCellDef="let element"> {{element.team2}} </mat-cell>
+        <mat-cell (click)="savePrediction(element.scheduleId,element.team2)" *matCellDef="let element">
+          <button mat-raised-button color="primary">{{element.team2}} </button>
+        </mat-cell>
       </ng-container>
 
       <!-- Prediction Column -->
@@ -42,7 +49,7 @@
       <mat-card class="point-table" style="flex-grow: 3">
         <mat-card-header>Point table </mat-card-header>
         <mat-list>
-          <mat-list-item *ngFor="let user of pointTable" >  {{ user.name }} : {{ user.point }}</mat-list-item>
+          <mat-list-item *ngFor="let user of pointTable"> {{ user.name }} : {{ user.point }}</mat-list-item>
         </mat-list>
       </mat-card>
     </div>

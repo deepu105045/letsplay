@@ -27,9 +27,8 @@ export class PredictionComponent implements OnInit {
   dataSource: TournamentDataSource;
   tournamentId: any;
 
-
   tournamentName$;
-  displayedColumns = ['gameDate', 'Team1', 'Team2', 'Prediction', 'Results'];
+  displayedColumns = ['venue','gameDate', 'Team1','Team2', 'Prediction', 'Results'];
   constructor(private route: ActivatedRoute, private tournamentService: TournamentService,
     private predictionService: PredictionService, private resultsService: ResultsService,
     private leagueService: LeagueService, private authService: AuthService,
@@ -93,6 +92,13 @@ export class PredictionComponent implements OnInit {
       })
     })
     return Observable.of(this.pointTable);
+  }
+
+  getStyle(prediction,result){
+    if(prediction===result)
+      return "green";
+    else
+      return "red";
   }
 
 

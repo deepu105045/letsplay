@@ -25,7 +25,16 @@
   margin: 2px;
 }
 
-.correct{
-  background-color: green;
+.chip{
+  width: 5em;
 }
+
+/* .venue-chip{
+  width: 7em;
+}
+
+.date-chip{
+  width: 10em;
+} */
+
 

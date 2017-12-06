@@ -24,11 +24,15 @@ export class TournamentComponent implements OnInit {
   }
 
   gotoTournamentScheduler(tournament:Tournament) {
-    this.router.navigate(['/settings/tournament-scheduler', tournament.tournamentId]);
+    this.router.navigate(['/tournament-scheduler', tournament.tournamentId]);
   }
 
   gotoUpdateResults(tournament:Tournament){
-    this.router.navigate(['/settings/update-results', tournament.tournamentId]);
+    this.router.navigate(['/update-results', tournament.tournamentId]);
+  }
+
+  updatePointTable(tournament:Tournament){
+   this.router.navigate(['/point-table', tournament.tournamentId]);
   }
 
 

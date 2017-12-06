@@ -1,20 +1,23 @@
  .container {
   display: flex;
-  justify-content: left;
-  align-items: left; 
+  align-items: center;
+  height:100vh; 
+  justify-content: center;
+  flex-direction: row;
+
 } 
 
 .add-item{
-  margin: 10px;
-  width:200px;
+  /* margin: 10px; */
+  /* width:200px; */
+  /* width: 100vw; */
+  /* margin: auto; */
+   /* background-color: green  */
+  
 }
 
-.display-item{
+/* .display-item{
   margin: 10px;
   width:500px;
-}
+} */
 
- /* mat-card{
-    margin: 10px;
-    width: 200px;
-}  */

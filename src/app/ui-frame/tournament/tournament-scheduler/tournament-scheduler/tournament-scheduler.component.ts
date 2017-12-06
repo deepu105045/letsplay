@@ -60,6 +60,7 @@ export class TournamentSchedulerComponent implements OnInit {
         sch.team1=gameLine.team1;
         sch.team2 = gameLine.team2;
         sch.venue =gameLine.venue;
+        sch.tournamentId = this.tournamentId
 
         this.tournamentService.saveTournamentSchedular(this.tournamentId,sch)
           .then(_ => {

@@ -1,29 +1,31 @@
-.example-container {
+.container {
   display: flex;
-  flex-direction: column;
-  /* max-height: 500px; */
-  /* min-width: 300px; */
-  margin-left: 5em;
-  margin-right: 5em;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 2em;
+  margin-right: 2em;
   margin-top:2em;
 }
 
 .mat-table {
   overflow: auto;
-  /* max-height: 500px; */
 }
 
-/* .mat-header-row{
-} */
-
-.card{
-  background-color: #4CAF50;
+.heading{
   text-align: center;
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-
 }
 
-.is-disabled {
-    opacity: .5;
-    pointer-events: none;
+.prediction-table{
+  margin: 2px;
 }
+
+.point-table{
+  background-color: lightyellow;
+  margin: 2px;
+}
+
+.correct{
+  background-color: green;
+}
+

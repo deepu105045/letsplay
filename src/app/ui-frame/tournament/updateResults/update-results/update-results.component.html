@@ -1,20 +1,27 @@
+<button mat-raised-button color="primary" (click)="updatePointTable(tournament)">UPDATE POINT TABLE</button>
+
 <mat-card *ngIf="tournament">
-      <mat-card-title align="center">
-      <u>{{tournament.name}}</u>
-    </mat-card-title>
+  <mat-card-title align="center">
+    <u>{{tournament.name}}</u>
+  </mat-card-title>
 </mat-card>
 <div *ngIf="schedules.length > 0">
   <mat-card>
     <div *ngFor="let schedule of schedules">
       <mat-grid-list cols="5" rowHeight="50px">
         <mat-grid-tile> {{schedule.gameDate}} : {{schedule.time}} IST</mat-grid-tile>
-        <mat-grid-tile><div class="text-inside-grid"> {{schedule.venue}}</div></mat-grid-tile>
-        <mat-grid-tile><div class="text-inside-grid" (click)="saveResults(schedule.scheduleId,schedule.team1)"> {{schedule.team1}}</div></mat-grid-tile>
-        <mat-grid-tile><div class="text-inside-grid" (click)="saveResults(schedule.scheduleId,schedule.team2)"> {{schedule.team2}}</div></mat-grid-tile>
-          <mat-grid-tile>{{results[schedule.scheduleId]}} </mat-grid-tile>  
+        <mat-grid-tile>
+          <div class="text-inside-grid"> {{schedule.venue}}</div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <div class="text-inside-grid" (click)="saveResults(schedule.scheduleId,schedule.team1)"> {{schedule.team1}}</div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <div class="text-inside-grid" (click)="saveResults(schedule.scheduleId,schedule.team2)"> {{schedule.team2}}</div>
+        </mat-grid-tile>
+        <mat-grid-tile>{{results[schedule.scheduleId]}} </mat-grid-tile>
       </mat-grid-list>
     </div>
   </mat-card>
 
 </div>
-

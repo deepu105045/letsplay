@@ -54,4 +54,8 @@ export class PredictionService {
     return this.afDb.list(this.predictionUrl, ref => ref.orderByChild('uid').equalTo(uid)).valueChanges();
   }
 
+  updatePrediction(predictionKey, prediction){
+    return this.afDb.list(this.predictionUrl).update(predictionKey,prediction);
+  }
+
 }

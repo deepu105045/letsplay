@@ -48,6 +48,15 @@ export class TournamentService {
     return this.afDb.list(this.baseurl + '/tournament_schedule/' + tournamentId + '/' + scheduleId).remove();
   }
 
+  getSCheduleByScheduleId(scheduleId){
+    return this.afDb.list(this.baseurl +'/tournament_schedule/', ref => 
+      ref.orderByChild('scheduleId').equalTo(scheduleId))
+      .valueChanges()
+      .subscribe( val => {
+        console.log(val);
+      })
+  }
+
   getAllScheduleIds(tournamentId): Observable<any> {
     let scheduleIds = [];
     this.getTournamentSchedule(tournamentId)

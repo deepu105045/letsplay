@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class PointTableService {
-  tournamentScheduleUrl: string;
+  // tournamentScheduleUrl: string;
   pointTable$: any;
   pointTableUrl: string;
   predictionUrl: string;
@@ -15,7 +15,7 @@ export class PointTableService {
     this.baseurl = 'letsplay';
     this.predictionUrl = this.baseurl + '/prediction';
     this.pointTableUrl = this.baseurl + '/point-table';
-    this.tournamentScheduleUrl = this.baseurl + '/tournament_schedule/-L-5CHaNc9wSRehFFABF';
+    // this.tournamentScheduleUrl = this.baseurl + '/tournament_schedule/-L-5CHaNc9wSRehFFABF';
     this.pointTable$ = this.afDb.list(this.baseurl + `/teams`);
   }
 

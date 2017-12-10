@@ -1,11 +1,3 @@
-.container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-left: 2em;
-  margin-right: 2em;
-  margin-top:2em;
-}
 
 .mat-table {
   overflow: auto;
@@ -16,25 +8,121 @@
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
-.prediction-table{
-  margin: 2px;
-}
-
-.point-table{
-  background-color: lightyellow;
-  margin: 2px;
-}
-
 .chip{
   width: 5em;
 }
 
-/* .venue-chip{
+ .venue-chip{
   width: 7em;
 }
 
 .date-chip{
   width: 10em;
-} */
+} 
+
+.cellWidth{
+   flex: 0 0 5em;
+}
 
 
+
+
+
+.game-table-container{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+}
+
+.game-table{
+  display: flex;
+  flex-direction: column;
+}
+
+.game-table-items{
+  background-color:lightskyblue;
+}
+
+.point-table{
+  display: flex;  
+  align-self: flex-start;
+}
+
+.point-table-items{
+  border: 5px solid white;
+}
+
+.parentGrid{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+
+}
+
+.scheduleContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.gameLineContainer{
+  display: flex;
+  background-color: #3a006b;
+  border: 1px solid silver;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  text-align: center;
+  height: 6rem;
+  width: 30rem;
+  flex-flow: row wrap;
+}
+
+.gameLine{
+  display: flex;
+  background-color: #3a006b;
+  border: 1px solid silver;
+  height: 4rem;
+  width: 13rem;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  flex-direction: row;
+}
+
+.gameLine:hover{
+  background-color: #4a006b;
+}
+
+.selected{
+  background-color: #4a006b;
+}
+
+.title-container{
+  display: flex;
+  width: 30rem;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.title-item-start{
+  align-self: flex-start;
+}
+
+.title-item-end{
+  align-self: flex-end;
+}
+
+
+.boldFont{
+  font-weight: 900;
+  color: white;
+}
+
+.example-header-image {
+  background-image: url('http://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}

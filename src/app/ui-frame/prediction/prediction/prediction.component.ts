@@ -10,6 +10,7 @@ import { ResultsService } from '../../../shared/services/results/results.service
 import { LeagueService } from '../../../shared/services/league/league.service';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { PointTableService } from '../../../shared/services/point-table/point-table.service';
+import { TeamService } from '../../../shared/services/team/team.service';
 
 @Component({
   selector: 'app-prediction',
@@ -23,16 +24,18 @@ export class PredictionComponent implements OnInit {
   myPrediction = {};
   pointTable = [];
 
+  cardMode: boolean = true;
+
   tournamentData: any = [];
   dataSource: TournamentDataSource;
   tournamentId: any;
-
   tournamentName$;
-  displayedColumns = ['venue','gameDate', 'Team1','Team2', 'Prediction', 'Results'];
+  displayedColumns = ['venue', 'gameDate', 'Team1', 'Team2', 'Prediction', 'Results'];
+
   constructor(private route: ActivatedRoute, private tournamentService: TournamentService,
     private predictionService: PredictionService, private resultsService: ResultsService,
     private leagueService: LeagueService, private authService: AuthService,
-    private pointTableService: PointTableService) {
+    private pointTableService: PointTableService, private teamService: TeamService) {
   }
 
   ngOnInit() {
@@ -46,10 +49,18 @@ export class PredictionComponent implements OnInit {
 
       this.getPointTableData(this.leagueId, this.tournamentId)
     })
+
   }
 
   getTournamentName(tournamentId) {
     this.tournamentName$ = this.tournamentService.getTournamentById(tournamentId);
+  }
+
+  getUrl(teamName) {
+    this.teamService.getTeamByName(teamName).subscribe(team => {
+      console.log(team[0].url)
+      return new URL(team[0].url);
+    })
   }
 
   getTournamentData(tournamentId) {
@@ -94,13 +105,23 @@ export class PredictionComponent implements OnInit {
     return Observable.of(this.pointTable);
   }
 
-  getStyle(prediction,result){
-    if(prediction===result)
-      return "green";
+  getStyle(prediction, result) {
+    var color = null;
+    if ((result === undefined) || (prediction === undefined)) {
+      color = null;
+    }
+    if ((result === null) || (prediction === null)) {
+      color = null;
+    }
     else
-      return "red";
+      if (prediction === result)
+        color = "green";
+      else
+        color = "red";
+    return color;
   }
 
+  
 
 }
 

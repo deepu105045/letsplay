@@ -7,7 +7,7 @@
 
 <div class="parentGrid">
   <div *ngIf="cardMode; else tableMode" class="scheduleContainer">
-    <div *ngFor="let gameLine of tournamentData">
+    <div class="schedule-card" *ngFor="let gameLine of tournamentData">
       <div class="title-container">
         <span class="title-item-start">Your Prediction: {{myPrediction[gameLine.scheduleId]}}</span>
         <span class="title-item-start"> {{gameLine.gameDate}}</span>
@@ -15,10 +15,12 @@
       </div>
       <div class="gameLineContainer">
         <div class="gameLine boldFont" (click)="savePrediction(gameLine.scheduleId,gameLine.team1)" [ngClass]="{'selected': myPrediction[gameLine.scheduleId]===gameLine.team1}">
-             <span mat-card-avatar class="example-header-image"></span> {{gameLine.team1}}</div>   
-             <!-- <span mat-card-avatar [style.backgroundImage]=getUrl(gameLine.team1)></span> {{gameLine.team1}}</div>    -->
+          <img class="logo-image" mat-card-avatar [src]="teamLogo[gameLine.team1]"> {{gameLine.team1}}
+        </div>
+
         <div class="gameLine boldFont" (click)="savePrediction(gameLine.scheduleId,gameLine.team2)" [ngClass]="{'selected': myPrediction[gameLine.scheduleId]===gameLine.team2}">
-          <span mat-card-avatar class="example-header-image"></span> {{gameLine.team2}}</div>
+          <img class="logo-image" mat-card-avatar [src]="teamLogo[gameLine.team2]"> {{gameLine.team2}}
+        </div>
       </div>
     </div>
   </div>
@@ -31,7 +33,7 @@
           <div class="game-table-items">
             <!-- Venue Column -->
             <ng-container matColumnDef="venue">
-              <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> venue </mat-header-cell>
               <mat-cell class="cellWidth" *matCellDef="let element">
                 <mat-chip-list>
                   <mat-chip class="venue-chip">{{element.venue}} </mat-chip>
@@ -96,12 +98,19 @@
       </div>
     </div>
   </ng-template>
+
+  <!-- Table view ends  here  -->
+
   <div class="point-table">
-    <div class="point-table-items">
-      <mat-card>
-        <mat-card-header>Point table </mat-card-header>
-        <mat-card *ngFor="let user of pointTable"> {{ user.name }} : {{ user.point }}</mat-card>
-      </mat-card>
+    <div class="point-table-row boldFont">
+      <div class="point-table-cell">Position</div>
+      <div class="point-table-cell">Name</div>
+      <div class="point-table-cell">Points</div>
+    </div>
+    <div class="point-table-row boldFont" *ngFor="let user of pointTable; let i = index">
+      <div class="point-table-cell">{{i+1}}</div>
+      <div class="point-table-cell">{{ user.name }}</div>
+      <div class="point-table-cell">{{ user.point }}</div>
     </div>
   </div>
 </div>

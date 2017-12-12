@@ -67,5 +67,6 @@ export class TournamentService {
       })
     return Observable.of(scheduleIds);
   }
+
 }
 

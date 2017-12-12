@@ -44,21 +44,14 @@
   background-color:lightskyblue;
 }
 
-.point-table{
-  display: flex;  
-  align-self: flex-start;
-}
 
-.point-table-items{
-  border: 5px solid white;
-}
+/* css for card style starts here  */
 
 .parentGrid{
   display: flex;
   justify-content: space-around;
   flex-direction: row;
   align-items: center;
-
 }
 
 .scheduleContainer{
@@ -116,13 +109,53 @@
   align-self: flex-end;
 }
 
-
 .boldFont{
   font-weight: 900;
   color: white;
 }
 
-.example-header-image {
-  background-image: url('http://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+.logo-image{
+    width: 60px;
+    height: 60px;
+}
+.schedule-card {
+    padding: 1em;
+    border: 1px solid #c0c0c0;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+/* Css for point table starts here */
+
+.point-table{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  align-self: flex-start
+}
+
+.point-table-row{
+  display: flex;
+  background-color: #3a006b;
+  border: 1px solid silver;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  text-align: center;
+  width: 30rem;
+  flex-flow: row wrap;
+}
+
+.point-table-cell{
+  display: flex;
+  height: 4rem;
+  width: 6rem;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  flex-direction: row;
+}
+
+.expired{
+  pointer-events:none;
 }

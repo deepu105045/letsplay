@@ -1,57 +1,116 @@
-<div>
-  <h1 class="heading">{{leagueName}} - {{(tournamentName$ | async)?.name}}</h1>
-  <div *ngIf="dataSource" class="container mat-elevation-z8">
-    <mat-table class="prediction-table" [dataSource]="dataSource" style="flex-grow: 8">
+<h1 class="heading">
+  {{leagueName}} - {{(tournamentName$ | async)?.name}}
+  <hr/>
+</h1>
+<div (click)="cardMode = !cardMode">Switch to table mode</div>
+<br/>
 
-      <!-- Venue and Date Column -->
-      <ng-container matColumnDef="gameDate">
-        <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.venue}} <br> {{element.gameDate}}</mat-cell>
-      </ng-container>
+<div class="parentGrid">
+  <div *ngIf="cardMode; else tableMode" class="scheduleContainer">
+    <div class="schedule-card" *ngFor="let gameLine of tournamentData">
+      <div class="title-container">
+        <span class="title-item-start">Your Prediction: {{myPrediction[gameLine.scheduleId]}}</span>
+        <span class="title-item-start"> {{gameLine.gameDate}}</span>
+        <span class="title-item-end">Result: {{results[gameLine.scheduleId]}}</span>
+      </div>
+      <div class="gameLineContainer">
+        <div class="gameLine boldFont" (click)="savePrediction(gameLine.scheduleId,gameLine.team1)" [ngClass]="{'selected': myPrediction[gameLine.scheduleId]===gameLine.team1}">
+          <img class="logo-image" mat-card-avatar [src]="teamLogo[gameLine.team1]"> {{gameLine.team1}}
+        </div>
 
+        <div class="gameLine boldFont" (click)="savePrediction(gameLine.scheduleId,gameLine.team2)" [ngClass]="{'selected': myPrediction[gameLine.scheduleId]===gameLine.team2}">
+          <img class="logo-image" mat-card-avatar [src]="teamLogo[gameLine.team2]"> {{gameLine.team2}}
+        </div>
+      </div>
+    </div>
+  </div>
 
-      <!-- Team1 Column -->
-      <ng-container matColumnDef="Team1">
-        <mat-header-cell *matHeaderCellDef> Team1 </mat-header-cell>
-        <mat-cell  *matCellDef="let element">
-          <button (click)="savePrediction(element.scheduleId,element.team1)" mat-raised-button color="primary">{{element.team1}} </button>
-          <br>
-          <button (click)="savePrediction(element.scheduleId,element.team2)" mat-raised-button color="primary">{{element.team2}} </button>
+  <!-- Table view starts here  -->
+  <ng-template #tableMode>
+    <div class="game-table">
+      <div *ngIf="dataSource" class="container mat-elevation-z8">
+        <mat-table class="prediction-table" [dataSource]="dataSource" style="flex-grow: 5">
+          <div class="game-table-items">
+            <!-- Venue Column -->
+            <ng-container matColumnDef="venue">
+              <mat-header-cell *matHeaderCellDef> venue </mat-header-cell>
+              <mat-cell class="cellWidth" *matCellDef="let element">
+                <mat-chip-list>
+                  <mat-chip class="venue-chip">{{element.venue}} </mat-chip>
+                </mat-chip-list>
+              </mat-cell>
+            </ng-container>
 
-        </mat-cell>
-      </ng-container>
+            <!-- Date Column -->
+            <ng-container matColumnDef="gameDate">
+              <mat-header-cell class="cellWidth" *matHeaderCellDef> gameDate </mat-header-cell>
+              <mat-cell class="cellWidth" *matCellDef="let element">
+                <mat-chip-list>
+                  <mat-chip class="date-chip">{{element.gameDate}}</mat-chip>
 
-      <!-- Team2 Column -->
-      <ng-container matColumnDef="Team2">
-        <mat-header-cell *matHeaderCellDef> Team2 </mat-header-cell>
-        <mat-cell (click)="savePrediction(element.scheduleId,element.team2)" *matCellDef="let element">
-          <button mat-raised-button color="primary">{{element.team2}} </button>
-        </mat-cell>
-      </ng-container>
+                </mat-chip-list>
+              </mat-cell>
+            </ng-container>
 
-      <!-- Prediction Column -->
-      <ng-container matColumnDef="Prediction">
-        <mat-header-cell *matHeaderCellDef> My Prediction </mat-header-cell>
-        <mat-cell [class.correct]="myPrediction[element.scheduleId] === results[element.scheduleId]" *matCellDef="let element"> {{myPrediction[element.scheduleId]}} </mat-cell>
-      </ng-container>
+            <!-- Team1 Column -->
+            <ng-container matColumnDef="Team1">
+              <mat-header-cell *matHeaderCellDef> Team1 </mat-header-cell>
+              <mat-cell class="cellWidth" *matCellDef="let element">
+                <mat-chip-list>
+                  <mat-chip class="chip" (click)="savePrediction(element.scheduleId,element.team1)">{{element.team1}} </mat-chip>
+                </mat-chip-list>
+              </mat-cell>
+            </ng-container>
 
-      <!-- Results Column -->
-      <ng-container matColumnDef="Results">
-        <mat-header-cell *matHeaderCellDef> Match Result </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{results[element.scheduleId]}} </mat-cell>
-      </ng-container>
+            <!-- Team2 Column -->
+            <ng-container matColumnDef="Team2">
+              <mat-header-cell *matHeaderCellDef> Team1 </mat-header-cell>
+              <mat-cell class="cellWidth" *matCellDef="let element">
+                <mat-chip-list>
+                  <mat-chip class="chip" (click)="savePrediction(element.scheduleId,element.team2)">{{element.team2}} </mat-chip>
+                </mat-chip-list>
+              </mat-cell>
+            </ng-container>
 
+            <!-- Prediction Column -->
+            <ng-container matColumnDef="Prediction">
+              <mat-header-cell *matHeaderCellDef> My Prediction </mat-header-cell>
+              <mat-cell class="cellWidth" *matCellDef="let element">
+                <mat-chip-list>
+                  <mat-chip class="chip" [style.background-color]="getStyle(myPrediction[element.scheduleId],results[element.scheduleId])">{{myPrediction[element.scheduleId]}} </mat-chip>
+                </mat-chip-list>
+              </mat-cell>
+            </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-    <div>
-      <mat-card class="point-table" style="flex-grow: 3">
-        <mat-card-header>Point table </mat-card-header>
-        <mat-list>
-          <mat-list-item *ngFor="let user of pointTable"> {{ user.name }} : {{ user.point }}</mat-list-item>
-        </mat-list>
-      </mat-card>
+            <!-- Results Column -->
+            <ng-container matColumnDef="Results">
+              <mat-header-cell *matHeaderCellDef> Match Result </mat-header-cell>
+              <mat-cell class="cellWidth" *matCellDef="let element">
+                <mat-chip-list>
+                  <mat-chip class="chip"> {{results[element.scheduleId]}} </mat-chip>
+                </mat-chip-list>
+              </mat-cell>
+            </ng-container>
+          </div>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Table view ends  here  -->
+
+  <div class="point-table">
+    <div class="point-table-row boldFont">
+      <div class="point-table-cell">Position</div>
+      <div class="point-table-cell">Name</div>
+      <div class="point-table-cell">Points</div>
+    </div>
+    <div class="point-table-row boldFont" *ngFor="let user of pointTable; let i = index">
+      <div class="point-table-cell">{{i+1}}</div>
+      <div class="point-table-cell">{{ user.name }}</div>
+      <div class="point-table-cell">{{ user.point }}</div>
     </div>
   </div>
 </div>

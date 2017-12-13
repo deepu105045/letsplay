@@ -1,11 +1,3 @@
-.container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-left: 2em;
-  margin-right: 2em;
-  margin-top:2em;
-}
 
 .mat-table {
   overflow: auto;
@@ -16,16 +8,154 @@
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
-.prediction-table{
-  margin: 2px;
+.chip{
+  width: 5em;
 }
+
+ .venue-chip{
+  width: 7em;
+}
+
+.date-chip{
+  width: 10em;
+} 
+
+.cellWidth{
+   flex: 0 0 5em;
+}
+
+
+
+
+
+.game-table-container{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+}
+
+.game-table{
+  display: flex;
+  flex-direction: column;
+}
+
+.game-table-items{
+  background-color:lightskyblue;
+}
+
+
+/* css for card style starts here  */
+
+.parentGrid{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+}
+
+.scheduleContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.gameLineContainer{
+  display: flex;
+  background-color: #3a006b;
+  border: 1px solid silver;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  text-align: center;
+  height: 6rem;
+  width: 30rem;
+  flex-flow: row wrap;
+}
+
+.gameLine{
+  display: flex;
+  background-color: #3a006b;
+  border: 1px solid silver;
+  height: 4rem;
+  width: 13rem;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  flex-direction: row;
+}
+
+.gameLine:hover{
+  background-color: #4a006b;
+}
+
+.selected{
+  background-color: #4a006b;
+}
+
+.title-container{
+  display: flex;
+  width: 30rem;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.title-item-start{
+  align-self: flex-start;
+}
+
+.title-item-end{
+  align-self: flex-end;
+}
+
+.boldFont{
+  font-weight: 900;
+  color: white;
+}
+
+.logo-image{
+    width: 60px;
+    height: 60px;
+}
+.schedule-card {
+    padding: 1em;
+    border: 1px solid #c0c0c0;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+/* Css for point table starts here */
 
 .point-table{
-  background-color: lightyellow;
-  margin: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  align-self: flex-start
 }
 
-.correct{
-  background-color: green;
+.point-table-row{
+  display: flex;
+  background-color: #3a006b;
+  border: 1px solid silver;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  text-align: center;
+  width: 30rem;
+  flex-flow: row wrap;
 }
 
+.point-table-cell{
+  display: flex;
+  height: 4rem;
+  width: 6rem;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  flex-direction: row;
+}
+
+.expired{
+  pointer-events:none;
+}

@@ -19,17 +19,4 @@ export class PointTableComponent implements OnInit {
     this.pointTableService.updatePointTable(this.tournamentId);
     // this.getPointTableData(this.tournamentId, this.leagueId);
   }
-
-  // getPointTableData(tournamentId, leagueId) {
-  //   let pTable = {};
-
-  //   this.pointTableService.getPointTable(tournamentId).subscribe(pointTable => {
-  //     pointTable.forEach((user) => {
-  //       let uid=user.key;
-  //       let point=user.payload.val()[this.leagueId]
-  //       pTable[uid] = point;
-  //     })
-  //   })
-  // }
-
 }

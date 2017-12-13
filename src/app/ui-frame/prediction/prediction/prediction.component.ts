@@ -10,6 +10,7 @@ import { ResultsService } from '../../../shared/services/results/results.service
 import { LeagueService } from '../../../shared/services/league/league.service';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { PointTableService } from '../../../shared/services/point-table/point-table.service';
+import { TeamService } from '../../../shared/services/team/team.service';
 
 @Component({
   selector: 'app-prediction',
@@ -20,37 +21,55 @@ export class PredictionComponent implements OnInit {
   leagueName: any;
   leagueId: any;
   results = {};
+  teamLogo = {};
   myPrediction = {};
   pointTable = [];
+
+  cardMode: boolean = true;
 
   tournamentData: any = [];
   dataSource: TournamentDataSource;
   tournamentId: any;
-
-
   tournamentName$;
-  displayedColumns = ['gameDate', 'Team1', 'Team2', 'Prediction', 'Results'];
+  displayedColumns = ['venue', 'gameDate', 'Team1', 'Team2', 'Prediction', 'Results'];
+
   constructor(private route: ActivatedRoute, private tournamentService: TournamentService,
     private predictionService: PredictionService, private resultsService: ResultsService,
     private leagueService: LeagueService, private authService: AuthService,
-    private pointTableService: PointTableService) {
+    private pointTableService: PointTableService, private teamService: TeamService) {
   }
 
   ngOnInit() {
     this.leagueId = this.route.snapshot.params['id'];
-
     this.leagueService.getLeagueById(this.leagueId).subscribe(league => {
       this.tournamentId = league.tournamentId;
       this.leagueName = league.leagueName;
       this.getTournamentName(league.tournamentId);
       this.getTournamentData(league.tournamentId);
-
-      this.getPointTableData(this.leagueId, this.tournamentId)
+      this.getPointTableData(this.leagueId, this.tournamentId);
+      this.getTeams(league.tournamentId);
     })
+
   }
 
   getTournamentName(tournamentId) {
     this.tournamentName$ = this.tournamentService.getTournamentById(tournamentId);
+  }
+
+  getTeams(tournamentId) {
+    this.tournamentService.getTournamentById(tournamentId).subscribe(
+      respObj => {
+        respObj['teams'].map(team => {
+          this.getUrl(team);
+        })
+      }
+    )
+  }
+
+  getUrl(teamName) {
+    this.teamService.getTeamByName(teamName).subscribe(team => {
+      this.teamLogo[teamName] = team[0].url;
+    })
   }
 
   getTournamentData(tournamentId) {
@@ -79,15 +98,16 @@ export class PredictionComponent implements OnInit {
 
   getPointTableData(leagueId, tournamentId) {
     this.pointTableService.getPointTable(tournamentId).subscribe(allPoints => {
+      this.pointTable = [];
       allPoints.forEach((user) => {
         let myname;
         let uid = user.key;
         let point = user.payload.val()[this.leagueId];
-
         if (typeof point !== 'undefined') {
           this.authService.getUserProfile(uid).subscribe(u => {
             myname = u.name;
             this.pointTable.push({ uid: uid, point: point, name: myname })
+            this.pointTable.sort(this.compare)
           })
         }
       })
@@ -95,6 +115,30 @@ export class PredictionComponent implements OnInit {
     return Observable.of(this.pointTable);
   }
 
+  compare(a, b) {
+    if (a.point > b.point)
+      return -1;
+    if (a.point < b.point)
+      return 1;
+    return 0;
+  }
+
+
+  getStyle(prediction, result) {
+    var color = null;
+    if ((result === undefined) || (prediction === undefined)) {
+      color = null;
+    }
+    if ((result === null) || (prediction === null)) {
+      color = null;
+    }
+    else
+      if (prediction === result)
+        color = "green";
+      else
+        color = "red";
+    return color;
+  }
 
 }
 

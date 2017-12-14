@@ -9,7 +9,6 @@ import { TournamentService } from '../shared/services/tournament/tournament.serv
 import { TournamentComponent } from './tournament/tournament/tournament.component';
 import { AddTournamentComponent } from './tournament/add-tournament/add-tournament.component';
 import { ReactiveFormsModule } from '@angular/forms';
-// import { SettingsComponent } from './settings/settings.component';
 import { AddTeamComponent } from './team/add-team/add-team.component';
 import { SportService } from '../shared/services/sport/sport.service';
 import { TeamService } from '../shared/services/team/team.service';
@@ -23,7 +22,6 @@ import { PredictionService } from '../shared/services/prediction/prediction.serv
 import { UpdateResultsComponent } from './tournament/updateResults/update-results/update-results.component';
 import { ResultsService } from '../shared/services/results/results.service';
 import { PointTableService } from '../shared/services/point-table/point-table.service';
-import { PointTableComponent } from './point-table/point-table.component';
 
 @NgModule({
   imports: [
@@ -40,14 +38,12 @@ import { PointTableComponent } from './point-table/point-table.component';
     HeaderComponent,
     TournamentComponent,
     AddTournamentComponent,
-    // SettingsComponent,
     AddTeamComponent,
     TournamentSchedulerComponent,
     CreateLeagueComponent,
     ViewLeagueComponent,
     PredictionComponent,
     UpdateResultsComponent,
-    PointTableComponent,
   ],
   providers:[
     TournamentService,

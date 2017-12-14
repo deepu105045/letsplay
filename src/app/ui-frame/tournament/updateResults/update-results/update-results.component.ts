@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TournamentService } from '../../../../shared/services/tournament/tournament.service';
 import { TimeService } from '../../../../shared/services/time/time.service';
 import { ResultsService } from '../../../../shared/services/results/results.service';
+import { PointTableService } from '../../../../shared/services/point-table/point-table.service';
 
 @Component({
   selector: 'app-update-results',
@@ -15,7 +16,7 @@ export class UpdateResultsComponent implements OnInit {
   tournamentId: any;
 
   constructor(private route: ActivatedRoute, private tournamentService: TournamentService,
-    private resultsService: ResultsService,private router: Router) { }
+    private resultsService: ResultsService,private router: Router,private pointTableService: PointTableService) { }
 
   ngOnInit() {
     this.tournamentId = this.route.snapshot.params['id'];
@@ -37,7 +38,8 @@ export class UpdateResultsComponent implements OnInit {
   }
 
    updatePointTable(){
-   this.router.navigate(['/point-table', this.tournamentId]);
+   this.pointTableService.updatePointTable(this.tournamentId);
+   
   }
 
 }

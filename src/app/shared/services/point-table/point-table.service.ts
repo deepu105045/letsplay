@@ -42,8 +42,9 @@ export class PointTableService {
           table[uid] = leaguePoint;
           leaguePoint = {};
         })
-        this.afDb.list(this.pointTableUrl).update(tournamentId,table)
+        this.afDb.list(this.pointTableUrl).update(tournamentId,table)        
       })
+
   }
 
   groupBy(list, keyGetter) {

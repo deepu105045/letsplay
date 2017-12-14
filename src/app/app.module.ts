@@ -16,6 +16,7 @@ import { Userapi } from './user/userapi';
 import { AuthGuard } from './shared/services/auth/auth.guard';
 import { ConfirmDialogComponent } from './shared/Dialog/confirmDialog/confirm-dialog/confirm-dialog.component';
 import { AppMaterialModule } from './app-material/app-material.module';
+import { AlertDialogComponent } from './shared/Dialog/alert-dialog/alert-dialog.component';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyCme8PujY4uXC78TTSOKEqMZbaDXV-HQsM',
@@ -30,6 +31,7 @@ const firebaseConfig = {
   declarations: [
     AppComponent,
     ConfirmDialogComponent,
+    AlertDialogComponent,
   ],
   exports: [
     ConfirmDialogComponent

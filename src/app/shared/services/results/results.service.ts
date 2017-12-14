@@ -23,9 +23,6 @@ export class ResultsService {
       .then(_ => {
         this.updatePoint(scheduleId, winningTeam);
       })
-      // .then(_ =>{
-      //   this.pointTableService.updatePointTable(tournamentId)
-      // })
   }
 
   getResults(scheduleId): Observable<any> {

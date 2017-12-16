@@ -18,6 +18,7 @@ import { TeamService } from '../../../shared/services/team/team.service';
   styleUrls: ['./prediction.component.css']
 })
 export class PredictionComponent implements OnInit {
+  pointTable$: Observable<any>;
   pointTable: any[];
   leagueName: any;
   leagueId: any;
@@ -99,21 +100,18 @@ export class PredictionComponent implements OnInit {
 
 
   getPointTableData(leagueId, tournamentId) {
-    this.pointTableService.getPointTable(tournamentId).subscribe(allPoints => {
-      this.pointTable = [];
-      allPoints.forEach((user) => {
-        let myname;
-        let uid = user.key;
-        this.getUserName(uid);
-        let point = user.payload.val()[this.leagueId];
-        if (typeof point !== 'undefined') {
-          this.pointTable.push({ uid: uid, point: point })          
-          this.pointTable.sort(this.compare)
-        }
-      })
-
-    })
-    return Observable.of(this.pointTable);
+     this.pointTable$=this.pointTableService.getPointTableByLeagueId(leagueId)
+     let myName ;
+     this.pointTableService.getPointTableByLeagueId(leagueId).subscribe(
+       allUserPoints => {
+        allUserPoints.forEach(userPoint => {
+          this.authService.getUserProfile(userPoint.uid).subscribe(userInfo =>{
+            this.usernames[userPoint.uid]= userInfo.name;
+          })
+        })
+       }
+     )
+     
   }
 
   getUserName(uid) {

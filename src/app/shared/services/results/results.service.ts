@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 import { TournamentService } from '../tournament/tournament.service';
 
 import { PredictionService } from '../prediction/prediction.service';
-import { PointTableService } from '../point-table/point-table.service';
 
 @Injectable()
 export class ResultsService {
@@ -12,8 +11,9 @@ export class ResultsService {
   results$: any;
   baseurl: string;
   tournamentIds;
+  
   constructor(private afDb: AngularFireDatabase, private tournamentService: TournamentService,
-    private predictionService: PredictionService, private pointTableService: PointTableService) {
+    private predictionService: PredictionService) {
     this.baseurl = 'letsplay';
     this.predictionUrl = this.baseurl + '/prediction';
   }
@@ -39,7 +39,7 @@ export class ResultsService {
             prediction['result'] = res;
             prediction['myPrediction'] === res ? point = 1 : point = 0;
             prediction['point'] = point;
-            this.predictionService.updatePrediction(prediction['predictionKey'],prediction)
+            this.predictionService.updatePrediction(prediction['predictionKey'],prediction);
           })
         }
       });

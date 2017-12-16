@@ -21,29 +21,31 @@ export class PointTableService {
     return this.afDb.list(this.pointTableUrl+'/'+tournamentId).snapshotChanges();
   }
 
+  getPointTableByLeagueId(leagueId):Observable<any>{
+    return this.afDb.list(this.pointTableUrl, ref => ref.orderByChild('leagueId').equalTo(leagueId)).valueChanges();
+  }
+
   updatePointTable(tournamentId) {
-    let pushKey = this.pointTable$.push().key;
-    let table = {};
     let subscription = this.afDb.list(this.predictionUrl, ref => ref.orderByChild('tournamentId').equalTo(tournamentId))
-      .valueChanges().subscribe(allPredictions => {
+      .valueChanges().subscribe(allPredictions => {   
         const predictionsByUser = this.groupBy(allPredictions, prediction => prediction.uid);
         predictionsByUser.forEach((user, uid) => {
           const predictionsByUserAndLeagueId = this.groupBy(user, p => p.leagueId);
-          let leaguePoint = {};
           predictionsByUserAndLeagueId.forEach((prd, leagueId) => {
-            let tot = 0;
+            let point = 0;
             for (let p of prd) {
               if ('point' in p) {
-                tot = tot + p.point;
-              } 
+                point = point + p.point;
+              }   
             }
-            leaguePoint[leagueId] = tot;
+            this.afDb.list(this.pointTableUrl).set(leagueId+uid ,{leagueId,uid,point})
           })
-          table[uid] = leaguePoint;
-          leaguePoint = {};
-        })
-        this.afDb.list(this.pointTableUrl).update(tournamentId,table)        
+        })  
+        subscription.unsubscribe();     //Delete this if point not updating 
+
       })
+
+      
 
   }
 

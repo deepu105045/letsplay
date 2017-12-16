@@ -107,10 +107,9 @@
       <div class="point-table-cell">Name</div>
       <div class="point-table-cell">Points</div>
     </div>
-    <div class="point-table-row boldFont" *ngFor="let user of pointTable; let i = index">
+    <div class="point-table-row boldFont" *ngFor="let user of pointTable$|async; let i = index">
       <div class="point-table-cell">{{i+1}}</div>
       <div class="point-table-cell">{{ usernames[user.uid] }}</div>
-      <!-- <div class="point-table-cell">{{ getUserName(user.uid) }}</div>       -->
       <div class="point-table-cell">{{ user.point }}</div>
     </div>
   </div>

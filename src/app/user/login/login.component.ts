@@ -20,6 +20,10 @@ export class LoginComponent implements OnInit {
   loginStatus: string;
   loggedinUserName: string;
   mode: string=null;
+
+  isEmailPassword:boolean= false;
+
+
   EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
   private validationMessage = {
@@ -91,5 +95,9 @@ export class LoginComponent implements OnInit {
   handleSucessfulLogin(user) {
     this.mode= null;
     this.router.navigate(['/home']);
+  }
+
+  displayEmailPassword(){
+    this.isEmailPassword=true;
   }
 }

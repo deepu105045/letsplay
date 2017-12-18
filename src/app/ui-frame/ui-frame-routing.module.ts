@@ -14,16 +14,15 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'prediction/:id', component: PredictionComponent, canActivate: [AuthGuard] },
 
-  { path: 'tournaments', component: TournamentComponent },
-  { path: 'add-tournament', component: AddTournamentComponent },
-  { path: 'add-team', component: AddTeamComponent },
+  { path: 'tournaments', component: TournamentComponent , canActivate: [AuthGuard]},
+  { path: 'add-tournament', component: AddTournamentComponent, canActivate: [AuthGuard] },
+  { path: 'add-team', component: AddTeamComponent , canActivate: [AuthGuard]},
 
-  { path: 'tournament-scheduler/:id', component: TournamentSchedulerComponent },
-  { path: 'create-league', component: CreateLeagueComponent },
-  { path: 'update-results/:id', component: UpdateResultsComponent },
+  { path: 'tournament-scheduler/:id', component: TournamentSchedulerComponent , canActivate: [AuthGuard]},
+  { path: 'create-league', component: CreateLeagueComponent , canActivate: [AuthGuard]},
+  { path: 'update-results/:id', component: UpdateResultsComponent , canActivate: [AuthGuard]},
   
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-
+  { path: '', component: HomeComponent }
 ];
 
 @NgModule({

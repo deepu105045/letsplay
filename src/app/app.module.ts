@@ -45,7 +45,7 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    AppMaterialModule
+    AppMaterialModule,
   ],
   entryComponents:[ConfirmDialogComponent],
   providers: [ 

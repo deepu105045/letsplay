@@ -22,6 +22,8 @@ import { PredictionService } from '../shared/services/prediction/prediction.serv
 import { UpdateResultsComponent } from './tournament/updateResults/update-results/update-results.component';
 import { ResultsService } from '../shared/services/results/results.service';
 import { PointTableService } from '../shared/services/point-table/point-table.service';
+import { Ng2DatetimePickerModule } from 'ng2-datetime-picker';
+
 
 @NgModule({
   imports: [
@@ -29,6 +31,7 @@ import { PointTableService } from '../shared/services/point-table/point-table.se
     UiFrameRoutingModule,
     AppMaterialModule,
     ReactiveFormsModule,
+    Ng2DatetimePickerModule
   ],
   exports: [
     HeaderComponent

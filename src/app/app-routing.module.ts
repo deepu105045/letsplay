@@ -3,11 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'letsplay',
     loadChildren: 'app/ui-frame/ui-frame.module#UiFrameModule'
   },
     {
-    path: 'user',
+    path: '',
     loadChildren: 'app/user/user.module#UserModule'
   }
 ];

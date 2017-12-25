@@ -26,7 +26,6 @@ export class PredictionComponent implements OnInit {
   teamLogo = {};
   myPrediction = {};
   usernames ={};
-
   cardMode: boolean = true;
 
   tournamentData: any = [];
@@ -51,7 +50,6 @@ export class PredictionComponent implements OnInit {
       this.getPointTableData(this.leagueId, this.tournamentId);
       this.getTeams(league.tournamentId);
     })
-
   }
 
   getTournamentName(tournamentId) {
@@ -143,6 +141,12 @@ export class PredictionComponent implements OnInit {
       else
         color = "red";
     return color;
+  }
+
+  isExpired(gameDate){
+    let currentTimeStamp= new Date();
+    return gameDate <= currentTimeStamp.toISOString();
+
   }
 
 }

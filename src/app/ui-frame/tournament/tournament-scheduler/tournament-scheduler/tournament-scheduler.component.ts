@@ -21,13 +21,12 @@ export class TournamentSchedulerComponent implements OnInit {
   tournament;
   teams;
   TournamentSchedulerForm: FormGroup;
-
+  
   constructor(private route: ActivatedRoute, private _fb: FormBuilder, private tournamentService: TournamentService,
-    private timeService: TimeService, public dialog: MatDialog) { }
+     public dialog: MatDialog) { }
 
   ngOnInit() {
     this.tournamentId = this.route.snapshot.params['id'];
-    this.getTournamentTime();
     this.getTeams();
     this.getTournamentSchedule(this.tournamentId);
     this.createTournamentSchedulerForm();
@@ -36,7 +35,6 @@ export class TournamentSchedulerComponent implements OnInit {
   gameLine(): FormGroup {
     return this._fb.group({
       gameDate: ['', Validators.required],
-      time: ['', Validators.required],
       venue: ['', Validators.required],
       team1: ['', Validators.required],
       team2: ['', Validators.required]
@@ -56,7 +54,8 @@ export class TournamentSchedulerComponent implements OnInit {
     this.TournamentSchedulerForm.value.gameLines.forEach((gameLine) => {
       if (gameLine.team1 !== '') {
         let sch= new Schedule();
-        sch.gameDate=gameLine.gameDate.toDateString();
+        let d = new Date(gameLine.gameDate);
+        sch.gameDate=d;
         sch.team1=gameLine.team1;
         sch.team2 = gameLine.team2;
         sch.venue =gameLine.venue;
@@ -68,12 +67,6 @@ export class TournamentSchedulerComponent implements OnInit {
           })
       }
     });
-  }
-
-  getTournamentTime() {
-    this.timeService.getTime().subscribe((time) => {
-      this.time$ = time;
-    })
   }
 
   getTeams() {

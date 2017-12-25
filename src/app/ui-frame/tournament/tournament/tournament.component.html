@@ -1,15 +1,13 @@
-<mat-grid-list cols="2" rowHeight="2:1">
-  <mat-grid-tile *ngFor="let tournament of tournaments$|async">
-    <mat-card>
-      <mat-card-title>{{tournament.name}}</mat-card-title>
-      <mat-card-content></mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="gotoTournamentScheduler(tournament)">SCHEDULE</button>
-        <button mat-raised-button color="primary" (click)="gotoUpdateResults(tournament)">UPDATE RESULTS</button>
-        <!-- <button mat-raised-button color="primary" (click)="updatePointTable(tournament)">UPDATE POINT TABLE</button>  -->
-
-      </mat-card-actions>
+<div class="main-container">
+  <div class="schedule-card" *ngFor="let tournament of tournaments$|async">
+    <mat-card class= "tour-card">
+        <mat-card-title>{{tournament.name}}</mat-card-title>     
+        <button  color="primary" mat-raised-button (click)="gotoTournamentScheduler(tournament)"> UPDATE SCHEDULE</button>
+        <button  color="primary" mat-raised-button (click)="gotoUpdateResults(tournament)">UPDATE RESULTS</button>   
     </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
-<button mat-fab routerLink='/add-tournament'><mat-icon>add</mat-icon></button>
+  </div>
+</div>
+
+<button mat-fab routerLink='/letsplay/add-tournament'>
+  <mat-icon>add</mat-icon>
+</button>

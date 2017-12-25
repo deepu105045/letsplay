@@ -12,17 +12,15 @@ import { UpdateResultsComponent } from './tournament/updateResults/update-result
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'prediction/:id', component: PredictionComponent, canActivate: [AuthGuard] },
 
+  { path: 'prediction/:id', component: PredictionComponent, canActivate: [AuthGuard] },
   { path: 'tournaments', component: TournamentComponent , canActivate: [AuthGuard]},
   { path: 'add-tournament', component: AddTournamentComponent, canActivate: [AuthGuard] },
   { path: 'add-team', component: AddTeamComponent , canActivate: [AuthGuard]},
-
   { path: 'tournament-scheduler/:id', component: TournamentSchedulerComponent , canActivate: [AuthGuard]},
   { path: 'create-league', component: CreateLeagueComponent , canActivate: [AuthGuard]},
   { path: 'update-results/:id', component: UpdateResultsComponent , canActivate: [AuthGuard]},
   
-  { path: '', component: HomeComponent }
 ];
 
 @NgModule({

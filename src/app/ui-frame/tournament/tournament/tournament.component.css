@@ -1,13 +1,20 @@
-button[mat-fab] {
+
+  .main-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  button[mat-fab] {
     position: fixed;
     bottom: 25px;
     right: 25px;
 }
 
-mat-card{
-    margin: 10px;
-    width: 500px;
-    height: 150px;
+.tour-card {
+  padding: 1em;
+  border: 1px solid #c0c0c0;
+  margin-top: 5px;
+  border-radius: 5px;
 }
-
-

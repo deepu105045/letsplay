@@ -1,3 +1,4 @@
+
 <mat-card *ngIf="tournament">
       <mat-card-title align="center">
       <u>{{tournament.name}}</u>
@@ -7,7 +8,7 @@
   <mat-card>
     <div *ngFor="let schedule of schedules">
       <mat-grid-list cols="5" rowHeight="50px">
-        <mat-grid-tile> {{schedule.gameDate}} : {{schedule.time}} IST</mat-grid-tile>
+        <mat-grid-tile> {{schedule.gameDate | date: 'dd-MM-yyyy HH:mm:ss Z'}}</mat-grid-tile>
         <mat-grid-tile><div class="text-inside-grid"> {{schedule.venue}}</div></mat-grid-tile>
         <mat-grid-tile><div class="text-inside-grid"> {{schedule.team1}}</div></mat-grid-tile>
         <mat-grid-tile><div class="text-inside-grid"> {{schedule.team2}}</div></mat-grid-tile>
@@ -17,7 +18,6 @@
   </mat-card>
 
 </div>
-
 
 <div *ngIf="tournament">
   <mat-card>
@@ -29,17 +29,7 @@
 
               <mat-grid-tile>
                 <mat-form-field>
-                  <input matInput [matDatepicker]="picker" placeholder="Choose game date" formControlName="gameDate">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-              </mat-grid-tile>
-
-              <mat-grid-tile colspan=1 rowspan=1>
-                <mat-form-field>
-                  <mat-select placeholder="Game time" formControlName="time">
-                    <mat-option *ngFor="let time of time$" [value]=time>{{time}}</mat-option>
-                  </mat-select>
+                  <input matInput type="datetime-local" formControlName="gameDate" >                  
                 </mat-form-field>
               </mat-grid-tile>
 

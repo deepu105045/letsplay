@@ -24,10 +24,6 @@
    flex: 0 0 5em;
 }
 
-
-
-
-
 .game-table-container{
   display: flex;
   justify-content: space-around;
@@ -40,10 +36,6 @@
   flex-direction: column;
 }
 
-.game-table-items{
-  background-color:lightskyblue;
-}
-
 
 /* css for card style starts here  */
 
@@ -52,6 +44,7 @@
   justify-content: space-around;
   flex-direction: row;
   align-items: center;
+  flex-flow: wrap;
 }
 
 .scheduleContainer{
